@@ -1,8 +1,58 @@
+/*
+#A7F3D0
+#059669
+#F9FAFB
+
+
+background:
+#e0e1e2
+  */
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-h1 {
-  background-color: red;
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+.logo {
+  height: 8rem;
+  border-radius: 50%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e0e1e2;
+  height: 9.6rem;
+  padding: 0 4.8rem;
+}
+
+.main-nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+.main-nav-link:link,
+.main-nav-visited:visited {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.8rem;
+  transition: all 0.3sec;
+  color: #333;
+}
+
+.main-nav-link:hover,
+.main-nav-visited:active {
+  text-decoration: none;
+  color: #388538;
 }
