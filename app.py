@@ -1,18 +1,18 @@
 from flask import Flask, render_template
 
 # Initialize Flask app & tells Flask where your HTML files live
-app = Flask(__name__, template_folder='Frontend')
+app = Flask(__name__, template_folder='templates',static_folder='static')
 
 
 # Define route for homepage
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('includes/navigation.html')
 
 # Students
-@app.route('/students')
+@app.route('/register')
 def students():
-    return render_template('students.html')
+    return render_template('views/register.html')
 
 #scholarships
 @app.route('/scholarships')
@@ -32,3 +32,4 @@ def contacts():
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+
