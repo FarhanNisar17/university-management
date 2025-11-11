@@ -1,0 +1,162 @@
+/* .container {
+  display: flex;
+  justify-content: center;
+  padding: 0 3.2rem;
+}
+
+.form-box {
+  width: 60rem;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3.2rem 6rem rgba(0, 0, 0, 0.15);
+  margin-top: 2rem;
+  border-radius: 11px;
+  overflow: hidden;
+  background-image: linear-gradient(to right bottom, #41d16c, #62f08d);
+}
+
+.form label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+.form input,
+.form select {
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 1.2rem;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form *:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(254, 240, 230, 0.5);
+} */
+
+.container {
+  max-width: 120rem;
+  padding: 3rem 3.2rem 0 3.2rem;
+  margin: 0 auto;
+}
+
+.heading-secondary {
+  font-weight: 700;
+  color: #333;
+  letter-spacing: -0.5px;
+  font-size: 4.4rem;
+  line-height: 1.2;
+  margin-bottom: 9.6rem;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1.6rem 3.2rem;
+  font-size: 2rem;
+  border-radius: 7px;
+  transition: all 0.3s;
+
+  /* only necessary for .btn */
+  border: none;
+  cursor: pointer;
+}
+
+.btn--form {
+  background-color: #45260a;
+  color: #fdf2e9;
+  align-self: end;
+  padding: 1.2rem;
+}
+
+.btn--form:hover {
+  background-color: #fff;
+  color: #555;
+}
+
+*:focus {
+  outline: none;
+  /* outline: 4px dotted #e67e22; */
+  outline-offset: 4px;
+  box-shadow: 0 0 0 0.6rem rgba(230, 125, 34, 0.5);
+  border-radius: 5px;
+}
+
+/* ------------------------------- */
+
+.form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  box-shadow: 0 3.2rem 6rem rgba(0, 0, 0, 0.15);
+  border-radius: 11px;
+  background-image: linear-gradient(to right bottom, #41d16c, #62f08d);
+  overflow: hidden;
+}
+
+.form-text-box {
+  padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+  color: #45260a;
+}
+
+.form .heading-secondary {
+  color: inherit;
+  margin-bottom: 3.2rem;
+}
+.form-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 4.8rem;
+}
+
+.form-img-box {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(238, 151, 76, 0.3),
+      rgba(238, 125, 34, 0.3)
+    ),
+    url("../content/img/eating.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.form-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3.2rem;
+  row-gap: 2.4rem;
+}
+
+.form-box label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+.form-box input,
+.form-box select {
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 1.2rem;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.from-box input::placeholder {
+  color: #aaa;
+}
+
+.form *:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(254, 240, 230, 0.5);
+}
