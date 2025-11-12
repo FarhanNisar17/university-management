@@ -17,17 +17,30 @@ def students():
 #scholarships
 @app.route('/scholarships')
 def scholarships():
-    return render_template('scholarships.html')
+    return render_template('views/scholarships.html')
 
 #courses
 @app.route('/courses')
 def courses():
-    return render_template('courses.html')
+    return render_template('views/courses.html')
 
 #contacts
 @app.route('/contacts')
 def contacts():
     return render_template('contacts.html')
+
+
+# hostels
+@app.route('/hostels')
+def hostels():
+    return render_template('views/hostels.html')
+
+
+# Transport services
+@app.route('/transport')
+def transport():
+    # pass the transports data to the template
+    return render_template('views/transport.html')
 
 # Run the app
 if __name__ == '__main__':
