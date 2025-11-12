@@ -1,0 +1,176 @@
+{% extends "includes/navigation.html" %}
+
+{% block content %}
+<div class="container">
+  <h1>Apply for Transport Service</h1>
+
+  <div class="apply-form-wrapper">
+    <div class="bus-info-card">
+      <h2>{{ bus.name }}</h2>
+      <p><strong>Bus Number:</strong> {{ bus.number }}</p>
+      <p><strong>Route:</strong> {{ bus.route }}</p>
+      <p><strong>Driver:</strong> {{ bus.driver }}</p>
+      <p><strong>Contact:</strong> {{ bus.contact }}</p>
+      <p><strong>Fare:</strong> {{ bus.fare }}</p>
+    </div>
+
+    <form method="POST" action="/transport/submit" class="transport-form">
+      <input type="hidden" name="bus_id" value="{{ bus_id }}" />
+      
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="Enter your full name" 
+          required 
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address *</label>
+        <textarea 
+          id="address" 
+          name="address" 
+          rows="3" 
+          placeholder="Enter your residential address (e.g., 123 Main Street, City, Postal Code)" 
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="pickup">Pickup Location *</label>
+        <input 
+          type="text" 
+          id="pickup" 
+          name="pickup" 
+          placeholder="e.g., Main Gate, South Campus, Bus Stop" 
+          required 
+        />
+      </div>
+
+      <div class="form-actions">
+        <a href="/transport" class="btn btn-cancel">Cancel</a>
+        <button type="submit" class="btn btn-apply">Submit Application</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .apply-form-wrapper {
+    max-width: 600px;
+    margin: 30px auto;
+  }
+
+  .bus-info-card {
+    background-color: #f9f9f9;
+    border-left: 4px solid #0b4a8b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+
+  .bus-info-card h2 {
+    margin-top: 0;
+    color: #0b4a8b;
+  }
+
+  .bus-info-card p {
+    margin: 8px 0;
+    font-size: 15px;
+  }
+
+  .transport-form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #0b4a8b;
+    box-shadow: 0 0 5px rgba(11, 74, 139, 0.3);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 25px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-apply {
+    background-color: #0b4a8b;
+    color: white;
+  }
+
+  .btn-apply:hover {
+    background-color: #093a6f;
+  }
+
+  .btn-cancel {
+    background-color: #ccc;
+    color: #333;
+  }
+
+  .btn-cancel:hover {
+    background-color: #999;
+  }
+
+  @media (max-width: 768px) {
+    .apply-form-wrapper {
+      margin: 20px 10px;
+    }
+
+    .transport-form {
+      padding: 18px;
+    }
+
+    .form-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}
