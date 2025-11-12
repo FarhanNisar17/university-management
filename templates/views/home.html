@@ -1,12 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    {% include "/includes/navigation.html" %}
-    <img src="{{ url_for('static', filename='images/home.jpg') }}" alt="" class="home"/>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>University of Kashmir - North Campus</title>
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include "/includes/navigation.html" %}
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="{{ url_for('static', filename='images/home.jpg') }}" alt="University of Kashmir North Campus" class="hero-img">
+    <div class="hero-text">
+      <h1>University of Kashmir - North Campus</h1>
+      <p>Inspiring Minds, Shaping Futures.</p>
+      <a href="{{ url_for('register') }}" class="btn">Join Us</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About the University</h2>
+    <p>
+      The University of Kashmir, North Campus, located in the scenic town of Delina, Baramulla,
+      is a premier institution dedicated to excellence in education, research, and innovation.
+      It provides students with a holistic learning experience, combining modern facilities
+      with a serene academic environment.
+    </p>
+    <p>
+      Established as part of the University of Kashmir, the North Campus aims to expand higher
+      education opportunities for the youth of north Kashmir. The campus offers programs in
+      Computer Science, Management, Humanities, and other disciplines.
+    </p>
+  </section>
+
+  <!-- Departments Section -->
+  <section class="departments">
+    <h2>Departments</h2>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <h3>Computer Science & Engineering</h3>
+        <p>Offers undergraduate and postgraduate programs focusing on software development, AI, and data science.</p>
+      </div>
+      <div class="dept-card">
+        <h3>Business & Management Studies</h3>
+        <p>Equips students with leadership and entrepreneurial skills for the corporate world.</p>
+      </div>
+      <div class="dept-card">
+        <h3>English & Literature</h3>
+        <p>Promotes creativity and critical thinking through the study of classic and modern literature.</p>
+      </div>
+      <div class="dept-card">
+        <h3>Education</h3>
+        <p>Focuses on innovative teaching methodologies and research in the field of education.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Address:</strong> University of Kashmir, North Campus, Delina, Baramulla, Jammu & Kashmir</p>
+    <p><strong>Email:</strong> info@uoknorth.edu.in</p>
+    <p><strong>Phone:</strong> +91-1952-234567</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 University of Kashmir - North Campus. All Rights Reserved.</p>
+  </footer>
+</body>
 </html>
