@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Departments - University of Kashmir</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  {% include "/includes/navigation.html" %}
+{% include "/includes/navigation.html" %}
 
-  <section class="departments-section">
-    <h1>Departments</h1>
-    <p>Explore our various departments and programs.</p>
+<main class="container">
+  <h1>Departments</h1>
+  <p class="lead">Explore our departments and their offered programs.</p>
+
+  <section class="dept-grid">
+    {% if departments and departments|length > 0 %}
+      {% for d in departments %}
+        <article class="dept-card">
+          <h2>{{ d.name }}</h2>
+          <p class="dept-meta"><strong>Head:</strong> {{ d.head }} &nbsp;•&nbsp; <strong>Contact:</strong> {{ d.contact }}</p>
+          <p class="dept-email"><strong>Email:</strong> <a href="mailto:{{ d.email }}">{{ d.email }}</a></p>
+          <p class="desc">{{ d.description }}</p>
+          <p class="courses"><strong>Programs:</strong>
+            {% for c in d.courses %}
+              <span class="chip">{{ c }}</span>
+            {% endfor %}
+          </p>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>No departments found.</p>
+    {% endif %}
   </section>
-</body>
-</html>
+
+</main>
+
+<footer style="text-align:center; padding:30px 0; color:#666">&copy; {{ (2025) }} University</footer>
+

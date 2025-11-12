@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Courses - University of Kashmir</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  {% include "/includes/navigation.html" %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    {% include 'includes/navigation.html' %}
 
-  <section class="courses-section">
-    <h1>Courses</h1>
-    <p>Explore our course offerings.</p>
-  </section>
-</body>
+    <div class="container">
+      <h1>Our Courses</h1>
+
+      <div class="hostel-grid">
+
+        <div class="hostel-card">
+          <h2>B.Tech in Computer Science &amp; Engineering (CSE)</h2>
+          <p><strong>Degree:</strong> B.Tech</p>
+          <p><strong>Duration:</strong> 4 Years (8 Semesters)</p>
+          <p><strong>Intake:</strong> 120 seats</p>
+          <p><strong>Eligibility:</strong> 10+2 (Science) with Mathematics</p>
+          <p><strong>Overview:</strong> Core computer science topics including algorithms, data structures, operating systems, and software engineering. Strong focus on practical labs and projects.</p>
+        </div>
+
+        <div class="hostel-card">
+          <h2>B.Sc. Botany</h2>
+          <p><strong>Degree:</strong> B.Sc</p>
+          <p><strong>Duration:</strong> 3 Years (6 Semesters)</p>
+          <p><strong>Intake:</strong> 60 seats</p>
+          <p><strong>Eligibility:</strong> 10+2 (Science) with Biology</p>
+          <p><strong>Overview:</strong> Study of plant biology, ecology, genetics and taxonomy with lab and fieldwork components. Prepares students for research, teaching and environmental careers.</p>
+        </div>
+
+        <div class="hostel-card">
+          <h2>IMBA (Integrated Master of Business Administration)</h2>
+          <p><strong>Degree:</strong> Integrated BBA + MBA</p>
+          <p><strong>Duration:</strong> 5 Years</p>
+          <p><strong>Intake:</strong> 40 seats</p>
+          <p><strong>Eligibility:</strong> 10+2 in any stream; selection by entrance/interview</p>
+          <p><strong>Overview:</strong> Combines undergraduate business fundamentals with advanced MBA coursework. Focus on management, finance, marketing, and entrepreneurship with internships.</p>
+        </div>
+
+      </div>
+    </div>
+  </body>
 </html>
