@@ -15,16 +15,10 @@
   </head>
   <body>
     {% include '/includes/navigation.html' %}
-    <div class="container">
+    <div class="container-2">
       <div class="form">
         <div class="form-text-box">
-          <h2 class="heading-secondary">Heading can be here</h2>
-          <p class="form-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla sunt
-            iusto quo laudantium nesciunt impedit quos incidunt, ut ratione.
-            Deleniti sint error accusantium saepe minima, consequatur quis?
-            Optio, velit aperiam.
-          </p>
+          <h2 class="heading-secondary">Registration</h2>
 
           <form class="form-box" action="abc">
             <div>
@@ -38,31 +32,76 @@
             </div>
 
             <div>
-              <label for="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="abc@example.com"
-                required
-              />
+              <label for="rollno">Roll No</label>
+              <input type="number" id="rollno" required />
             </div>
 
             <div>
-              <label for="select-where">Where did you hear from us?</label>
-              <select id="select-where">
-                <option value="">Please choose one option</option>
-                <option value="friends">Friend or family</option>
-                <option value="youtube">Youtube</option>
-                <option value="podcast">Podcast</option>
+              <label for="dateofbirth">Date Of Birth</label>
+              <input type="text" id="dateofbirth" required />
+            </div>
+
+            <div>
+              <label for="address">Address</label>
+              <input type="text" id="address" required />
+            </div>
+
+            <div>
+              <label for="select-category">Your Category</label>
+              <select id="select-category">
+                <option value="general">General</option>
+                <option value="friends">OBC</option>
+                <option value="youtube">SC</option>
+                <option value="podcast">ST</option>
                 <option value="others">Others</option>
               </select>
+            </div>
+
+            <div>
+              <label for="select-department">Department</label>
+              <select id="select-department">
+                <option value="general">Null</option>
+                <option value="general">Computer Science</option>
+                <option value="friends">Department of Botany</option>
+                <option value="youtube">English Department</option>
+                <option value="podcast">
+                  Master of Business Administration
+                </option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="email">Course</label>
+              <input type="email" id="email" required />
+            </div>
+
+            <div>
+              <label for="admission">Admission Year</label>
+              <input type="text" id="admission" required />
+            </div>
+
+            <div class="gender-group">
+              <label for="gender">Gender:</label>
+              <div class="gender-options">
+                <label>
+                  <input type="radio" name="gender" value="male" required />
+                  <span>Male</span>
+                </label>
+                <label>
+                  <input type="radio" name="gender" value="female" />
+                  <span>Female</span>
+                </label>
+                <label>
+                  <input type="radio" name="gender" value="other" />
+                  <span>Other</span>
+                </label>
+              </div>
             </div>
 
             <button class="btn btn--form">Register up now!</button>
           </form>
         </div>
-
-        <div class="form-img-box" role="img" aria-label=""></div>
       </div>
     </div>
   </body>
