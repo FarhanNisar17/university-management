@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='templates',static_folder='static')
 # Define route for homepage
 @app.route('/')
 def home():
-    return render_template('includes/navigation.html')
+    return render_template('views/home.html')
 
 # Students
 @app.route('/register')
