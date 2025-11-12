@@ -1,0 +1,51 @@
+
+{% extends "includes/navigation.html" %}
+
+{# Provide fallback transport data when the view doesn't pass `transports` #}
+{% if transports is not defined %}
+	{% set transports = [
+		{
+			'name': 'North Campus Express',
+			'number': 'JK01AB 6862',
+			'route': 'Nowgam ⇄ North Campus',
+            'driver': 'Mr Showkat Pandit',
+			'contact': '+91-9000000001',
+			'fare': '₹3000'
+		},
+		{
+			'name': 'North Campus Tortoise',
+            'number': 'JK01BC 3874',
+			'route': 'Ganderbal ⇄ North Campus',
+            'driver': 'Mr Farooq Ahmed',
+			'contact': '+91-9000000002',
+			'fare': '₹3000'
+		},
+		{
+			'name': 'North Campus Quicker',
+            'number': 'JK01BC 3853',
+			'route': 'Sopore ⇄ North Campus',
+            'driver': 'Mr Hilal Lone',
+			'contact': '+91-9000000003',
+			'fare': ' ₹3000 '
+		}
+	] %}
+{% endif %}
+
+{% block content %}
+<div class="container">
+	<h1>Transport Services</h1>
+
+	<div class="transport-grid">
+		{% for t in transports %}
+		<div class="transport-card">
+			<h2>{{ t.name }}</h2>
+			<p><strong>Number:</strong> {{ t.number }}</p>
+			<p><strong>Route:</strong> {{ t.route }}</p>
+			<p><strong>Driver:</strong> {{ t.driver }}</p>
+			<p><strong>Contact:</strong> {{ t.contact }}</p>
+			<p><strong>Fare:</strong> {{ t.fare }}</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -29,6 +29,19 @@ def courses():
 def contacts():
     return render_template('contacts.html')
 
+
+# hostels
+@app.route('/hostels')
+def hostels():
+    return render_template('views/hostels.html')
+
+
+# Transport services
+@app.route('/transport')
+def transport():
+    # pass the transports data to the template
+    return render_template('views/transport.html')
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
