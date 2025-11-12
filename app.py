@@ -17,12 +17,12 @@ def students():
 #scholarships
 @app.route('/scholarships')
 def scholarships():
-    return render_template('scholarships.html')
+    return render_template('views/scholarships.html')
 
 #courses
 @app.route('/courses')
 def courses():
-    return render_template('courses.html')
+    return render_template('views/courses.html')
 
 #contacts
 @app.route('/contacts')
