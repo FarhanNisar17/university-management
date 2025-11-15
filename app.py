@@ -11,8 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-app.secret_key = "kjh23kjh4k2j34h2kj34h2k34jh23kj4h23"
-
+app.secret_key = "secret_code"
 
 
 # Import models AFTER db.init_app

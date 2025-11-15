@@ -1,9 +1,9 @@
 from extensions import db
 
 class Student(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    rollno = db.Column(db.String(20), unique=True)
     fullname = db.Column(db.String(120), nullable=False)
-    rollno = db.Column(db.String(20), nullable=False)
     dob = db.Column(db.String(20))
     address = db.Column(db.String(200))
     category = db.Column(db.String(20))
