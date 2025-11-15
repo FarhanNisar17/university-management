@@ -1,97 +1,95 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+from extensions import db
+import pymysql
 
-# Initialize Flask app & tells Flask where your HTML files live
-app = Flask(__name__, template_folder='templates',static_folder='static')
+pymysql.install_as_MySQLdb()
 
-# Sample transport services data
-transports = [
-    {
-        'name': 'North Campus Express',
-        'number': 'JK01AB 6862',
-        'route': 'Nowgam ⇄ North Campus',
-        'driver': 'Mr Showkat Pandit',
-        'contact': '+91-9000000001',
-        'fare': '₹3000'
-    },
-    {
-        'name': 'North Campus Tortoise',
-        'number': 'JK01BC 3874',
-        'route': 'Ganderbal ⇄ North Campus',
-        'driver': 'Mr Farooq Ahmed',
-        'contact': '+91-9000000002',
-        'fare': '₹3000'
-    },
-    {
-        'name': 'North Campus Quicker',
-        'number': 'JK01BC 3853',
-        'route': 'Sopore ⇄ North Campus',
-        'driver': 'Mr Hilal Lone',
-        'contact': '+91-9000000003',
-        'fare': ' ₹3000 '
-    }
-]
+app = Flask(__name__)
 
-# Define route for homepage
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:urdream@localhost/university_db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+
+# Import models AFTER db.init_app
+from models import Student
+
+with app.app_context():
+    db.create_all()
+
+# ------------------ HOME PAGE ------------------
 @app.route('/')
 def home():
     return render_template('views/home.html')
 
-# Students
-@app.route('/register')
+# ------------------ STUDENT REGISTER ------------------
+@app.route('/register', methods=['GET', 'POST'])
 def students():
-    return render_template('views/register.html')
 
-#scholarships
+    if request.method == "POST":
+        fullname = request.form.get('fullname')
+        rollno = request.form.get('rollno')
+        dob = request.form.get('dob')
+        address = request.form.get('address')
+        category = request.form.get('category')
+        department = request.form.get('department')
+        course = request.form.get('course')
+        admission_year = request.form.get('admission_year')
+        gender = request.form.get('gender')
+
+        new_student = Student(
+            fullname=fullname,
+            rollno=rollno,
+            dob=dob,
+            address=address,
+            category=category,
+            department=department,
+            course=course,
+            admission_year=admission_year,
+            gender=gender
+        )
+
+        db.session.add(new_student)
+        db.session.commit()
+
+        return redirect(url_for('home'))
+
+    return render_template('views/register.html')
+# ------------------ SCHOLARSHIPS ------------------
 @app.route('/scholarships')
 def scholarships():
     return render_template('views/scholarships.html')
 
-#courses
+# ------------------ COURSES ------------------
 @app.route('/courses')
 def courses():
     return render_template('views/courses.html')
 
-#contacts
+# ------------------ CONTACTS ------------------
 @app.route('/contacts')
 def contacts():
     return render_template('views/contacts.html')
 
-
-# hostels
+# ------------------ HOSTELS ------------------
 @app.route('/hostels')
 def hostels():
     return render_template('views/hostels.html')
 
 
-# Transport services
-@app.route('/transport')
-def transport():
-    # pass the transports data to the template
-    return render_template('views/transport.html', transports=transports)
-
-# Transport apply form
-@app.route('/transport/apply/<int:bus_id>')
-def transport_apply(bus_id):
-    if 0 <= bus_id < len(transports):
-        bus = transports[bus_id]
-        return render_template('views/transport-apply.html', bus=bus, bus_id=bus_id)
-    return "Bus not found", 404
-
-# Handle transport form submission
+# ------------------ TRANSPORT ------------------
 @app.route('/transport/submit', methods=['POST'])
 def submit_transport_application():
-    from flask import request
     name = request.form.get('name')
     address = request.form.get('address')
     pickup = request.form.get('pickup')
     bus_id = request.form.get('bus_id')
-    
-    # Here you can save to database or send email
-    # For now, just return a success message
-    return render_template('views/transport-success.html', 
-                         name=name, address=address, pickup=pickup, bus_id=bus_id)
 
-# Run the app
+    return render_template(
+        'views/transport-success.html',
+        name=name, address=address, pickup=pickup, bus_id=bus_id
+    )
+
+
+# ------------------ RUN APP ------------------
 if __name__ == '__main__':
     app.run(debug=True)
-
