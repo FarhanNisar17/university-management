@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
-from extensions import db
-import pymysql
+from flask import Flask, render_template, request, redirect, url_for, flash
+import os
+import json
 
-pymysql.install_as_MySQLdb()
+# Initialize Flask app & tells Flask where your HTML files live
+app = Flask(__name__, template_folder='templates', static_folder='static')
+# Required for flashing messages from server to templates (development key)
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'dev-secret')
 
 app = Flask(__name__)
 
@@ -26,41 +29,17 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def students():
 
-    if request.method == "POST":
-        fullname = request.form.get('fullname')
-        rollno = request.form.get('rollno')
-        dob = request.form.get('dob')
-        address = request.form.get('address')
-        category = request.form.get('category')
-        department = request.form.get('department')
-        course = request.form.get('course')
-        admission_year = request.form.get('admission_year')
-        gender = request.form.get('gender')
-
-        new_student = Student(
-            fullname=fullname,
-            rollno=rollno,
-            dob=dob,
-            address=address,
-            category=category,
-            department=department,
-            course=course,
-            admission_year=admission_year,
-            gender=gender
-        )
-
-        db.session.add(new_student)
-        db.session.commit()
-
-        return redirect(url_for('home'))
-
-    return render_template('views/register.html')
-# ------------------ SCHOLARSHIPS ------------------
-@app.route('/scholarships')
-def scholarships():
+#scholarships
+@app.route('/scholarships', methods=['GET', 'POST'])
+def scholarship():
+    if request.method == 'POST':
+        # get form data here
+        name = request.form['fullname']
+        # save into database
     return render_template('views/scholarships.html')
 
-# ------------------ COURSES ------------------
+
+#courses
 @app.route('/courses')
 def courses():
     return render_template('views/courses.html')
