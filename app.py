@@ -1,7 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash
+import os
+import json
 
 # Initialize Flask app & tells Flask where your HTML files live
-app = Flask(__name__, template_folder='templates',static_folder='static')
+app = Flask(__name__, template_folder='templates', static_folder='static')
+# Required for flashing messages from server to templates (development key)
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'dev-secret')
 
 # Sample transport services data
 transports = [
@@ -42,9 +46,14 @@ def students():
     return render_template('views/register.html')
 
 #scholarships
-@app.route('/scholarships')
-def scholarships():
+@app.route('/scholarships', methods=['GET', 'POST'])
+def scholarship():
+    if request.method == 'POST':
+        # get form data here
+        name = request.form['fullname']
+        # save into database
     return render_template('views/scholarships.html')
+
 
 #courses
 @app.route('/courses')
