@@ -155,7 +155,7 @@
 /* Hover and active effects */
 .gender-options label:hover {
   background-color: #fae5d3;
-  transform: translateY(-3px);
+  transform: translateY(-1px);
 }
 
 .from-box input::placeholder {
