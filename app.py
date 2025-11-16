@@ -1,18 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
-from extensions import db
-import pymysql
+from util.database import create_app, setup_database
+from routes.students import students_bp
+from flask import render_template
 
-pymysql.install_as_MySQLdb()
-
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:urdream@localhost/university_db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db.init_app(app)
-
-app.secret_key = "secret_code"
-
+app = create_app()
+setup_database(app)
 
 # Import models AFTER db.init_app
 from models.students import Student
@@ -20,8 +11,6 @@ from models.students import Student
 # Import blueprints
 from routes.students import students_bp
 
-with app.app_context():
-    db.create_all()
 
 # ------------------ HOME PAGE ------------------
 @app.route('/')

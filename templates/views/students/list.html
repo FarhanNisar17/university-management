@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <script>
+      Swal.fire({
+        icon: "{{ category }}", // success / error / warning / info
+        title: "{{ message }}",
+        showConfirmButton: true,
+        timer: 5000,
+      });
+    </script>
+    {% endfor %} {% endif %} {% endwith %} {% include 'includes/navigation.html'
+    %}
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+
+      {% for s in students %}
+      <tr>
+        <td>{{ s.fullname }}</td>
+        <td>{{ s.rollno }}</td>
+        <td>{{ s.department }}</td>
+        <td>
+          <a href="{{ url_for('students.student_profile', id=s.id) }}"
+            >Profile</a
+          >
+          | <a href="{{ url_for('students.edit_student', id=s.id) }}">Edit</a> |
+          <a
+            href="{{ url_for('students.delete_student', id=s.id) }}"
+            onclick="return confirm('Delete student?');"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-from extensions import db
+from util.extensions import db
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

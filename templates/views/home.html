@@ -6,25 +6,15 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %}
-    <script>
-      Swal.fire({
-        icon: "{{ category }}", // success / error / warning / info
-        title: "{{ message }}",
-        showConfirmButton: true,
-        timer: 5000,
-      });
-    </script>
-    {% endfor %} {% endif %} {% endwith %} {% include
-    "/includes/navigation.html" %}
+    {% include "/includes/navigation.html" %}
 
     <img
       src="{{ url_for('static', filename='images/home.jpg') }}"
       alt=""
       class="home"
     />
+
+    <a class="btn" href="/students">View All Students</a>
+    <a class="btn" href="/students/register">Register New Student</a>
   </body>
 </html>
