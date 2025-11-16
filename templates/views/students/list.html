@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='table.css') }}"
+    />
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <script>
+      Swal.fire({
+        icon: "success",
+        html: `
+      {% for category, message in messages %}
+        <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    `,
+        toast: true,
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true,
+      });
+    </script>
+    {% endif %} {% endwith %} {% include 'includes/navigation.html' %}
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+
+      {% for s in students %}
+      <tr>
+        <td>{{ s.fullname }}</td>
+        <td>{{ s.rollno }}</td>
+        <td>{{ s.department }}</td>
+        <td>
+          <a
+            class="action-btn"
+            href="{{ url_for('students.student_profile', id=s.id) }}"
+            >Profile</a
+          >
+          <a
+            class="action-btn"
+            href="{{ url_for('students.edit_student', id=s.id) }}"
+            >Edit</a
+          >
+
+          <a
+            href="{{ url_for('students.delete_student', id=s.id) }}"
+            class="action-btn delete"
+            onclick="event.preventDefault(); confirmDelete('{{ url_for('students.delete_student', id=s.id) }}')"
+          >
+            Delete
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+  <script
+    defer
+    src="{{ url_for('static', filename='js/warning.js') }}"
+  ></script>
+</html>

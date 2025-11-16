@@ -7,6 +7,14 @@
   </head>
   <body>
     {% include "/includes/navigation.html" %}
-    <img src="{{ url_for('static', filename='images/home.jpg') }}" alt="" class="home"/>
+
+    <img
+      src="{{ url_for('static', filename='images/home.jpg') }}"
+      alt=""
+      class="home"
+    />
+
+    <a class="btn" href="/students">View All Students</a>
+    <a class="btn" href="/students/register">Register New Student</a>
   </body>
 </html>
