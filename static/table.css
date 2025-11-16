@@ -1,0 +1,56 @@
+table {
+  width: 90%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+table th {
+  background: #2a3984;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.4rem;
+}
+
+table tr:hover {
+  background: #f5f5f5;
+}
+
+.action-btn {
+  background: #2a3984;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.action-btn.delete {
+  background: #d9534f;
+}
+
+.action-btn:link,
+.action-btn:visited {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.4rem;
+  transition: all 0.3sec;
+}
+
+.action-btn:hover,
+.action-btn:active {
+  text-decoration: none;
+  color: #339CFF;
+}
+
+
+.action-btn:hover {
+  background-color: #fff;
+  color: #2a3984;
+}

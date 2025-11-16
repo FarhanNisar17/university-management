@@ -28,10 +28,13 @@
 }
 
 .btn--form {
-  background-color: #45260a;
+  background-color: #643811;
   color: #fdf2e9;
   align-self: end;
   padding: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn--form:hover {
@@ -51,11 +54,37 @@
 
 .form {
   display: grid;
-  grid-template-columns:1fr;
+  grid-template-columns: 1fr;
   box-shadow: 0 3.2rem 6rem rgba(0, 0, 0, 0.15);
   border-radius: 11px;
-  background-image: linear-gradient(to right bottom, #41d16c, #62f08d);
+  background-image: linear-gradient(to right bottom, #364283, #363e6e3f);
   overflow: hidden;
+}
+
+/* Registration Theme */
+.form-register .form {
+  background-image: linear-gradient(to right bottom, #2a9d8f, #84dcc6);
+}
+
+.form-register .btn--form {
+  background-color: #2a9d8f;
+}
+.form-register .btn--form:hover {
+  background-color: #fff;
+  color: #2a9d8f;
+}
+
+/* Edit Theme */
+.form-edit .form {
+  background-image: linear-gradient(to right bottom, #b95c1f, #ffcc99);
+}
+
+.form-edit .btn--form {
+  background-color: #b95c1f;
+}
+.form-edit .btn--form:hover {
+  background-color: #fff;
+  color: #b95c1f;
 }
 
 .form-text-box {
@@ -72,8 +101,6 @@
   line-height: 1.8;
   margin-bottom: 4.8rem;
 }
-
-
 
 .form-box {
   display: grid;
@@ -145,13 +172,6 @@
   transition: all 0.2s ease;
 }
 
-/* Custom checked effect */
-.gender-options input[type="radio"]:checked {
-  background-color: #b05c2e;
-  box-shadow: 0 0 0 3px #fdf2e9;
-  border-color: #b05c2e;
-}
-
 /* Hover and active effects */
 .gender-options label:hover {
   background-color: #fae5d3;
@@ -165,4 +185,9 @@
 .form *:focus {
   outline: none;
   box-shadow: 0 0 0 0.8rem rgba(254, 240, 230, 0.5);
+}
+
+/* EDIT PAGE */
+.gender-group-edit {
+  grid-column: span 2;
 }
