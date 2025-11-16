@@ -8,8 +8,11 @@ setup_database(app)
 # Import models AFTER db.init_app
 from models.students import Student
 
+
+
 # Import blueprints
 from routes.students import students_bp
+from routes.departments import department_bp
 
 
 # ------------------ HOME PAGE ------------------
@@ -19,6 +22,7 @@ def home():
 
 # Register blueprints
 app.register_blueprint(students_bp)
+app.register_blueprint(department_bp)
 
 
 # ------------------ RUN APP ------------------

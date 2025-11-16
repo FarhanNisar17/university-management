@@ -57,34 +57,33 @@
   grid-template-columns: 1fr;
   box-shadow: 0 3.2rem 6rem rgba(0, 0, 0, 0.15);
   border-radius: 11px;
-  background-image: linear-gradient(to right bottom, #364283, #363e6e3f);
   overflow: hidden;
 }
 
 /* Registration Theme */
 .form-register .form {
-  background-image: linear-gradient(to right bottom, #2a9d8f, #84dcc6);
+  background-image: linear-gradient(to right bottom, #364283, #363e6e3f);
 }
 
 .form-register .btn--form {
-  background-color: #2a9d8f;
+  background-color: #364283;
 }
 .form-register .btn--form:hover {
   background-color: #fff;
-  color: #2a9d8f;
+  color: #364283;
 }
 
 /* Edit Theme */
 .form-edit .form {
-  background-image: linear-gradient(to right bottom, #b95c1f, #ffcc99);
+  background-image: linear-gradient(to right bottom, #2a9d8f, #84dcc6);
 }
 
 .form-edit .btn--form {
-  background-color: #b95c1f;
+  background-color: #2a9d8f;
 }
 .form-edit .btn--form:hover {
   background-color: #fff;
-  color: #b95c1f;
+  color: #2a9d8f;
 }
 
 .form-text-box {
