@@ -1,3 +1,7 @@
+.section-dashboard {
+  margin: 4.8rem 0 4.8rem 0;
+}
+
 .grid {
   display: grid;
   row-gap: 9.6rem;
@@ -12,13 +16,25 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-.nav-card{
+.nav-card {
   color: #fff;
   font-size: 1.6rem;
+  text-decoration: none;
 }
 
-.dash-box{
+.nav-card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dash-box {
   width: 400px;
   height: 100px;
   background-color: #2a3984;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

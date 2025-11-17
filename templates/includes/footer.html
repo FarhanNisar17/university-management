@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='footer.css') }}"
+    />
+  </head>
+  <body>
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img
+              class="logo"
+              src="{{ url_for('static', filename='images/home.jpg') }}"
+              alt="Meme logo"
+            />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-links" href="#"
+                ><icon-icon
+                  class="social-icon"
+                  name="logo-instagram"
+                ></icon-icon>
+              </a>
+            </li>
+            <li>
+              <a class="footer-links" href="#"
+                ><icon-icon
+                  class="social-icon"
+                  name="logo-facebook"
+                ></icon-icon>
+              </a>
+            </li>
+            <li>
+              <a class="footer-links" href="#"
+                ><icon-icon class="social-icon" name="logo-twitter"></icon-icon>
+              </a>
+            </li>
+          </ul>
+
+          <p class="copyright">
+            copyright &copy; 2027 by omnifood, Inc. All rights reserved.
+          </p>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading">Contact us</p>
+          <address class="contacts">
+            <p class="address">
+              Address: 623 Harrison St., 2nd floor, San Francisco, CA 94107
+            </p>
+            <a class="footer-link" href="tel:415-2423-231">415-2423-231</a
+            ><br />
+            <a class="footer-link" href="mailto:abc@gmail.com">abc@gmail.com</a>
+          </address>
+        </div>
+        <nav class="nav-col">
+          <p class="footer-heading">Acount</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Create account</a></li>
+            <li><a class="footer-link" href="#">Sign in</a></li>
+            <li><a class="footer-link" href="#">iOS app</a></li>
+            <li><a class="footer-link" href="#">Android app</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">About Omnifood</a></li>
+            <li><a class="footer-link" href="#">For Business</a></li>
+            <li><a class="footer-link" href="#">Cooking partners</a></li>
+            <li><a class="footer-link" href="#">Careers</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Recipe directory</a></li>
+            <li><a class="footer-link" href="#">Help center</a></li>
+            <li><a class="footer-link" href="#">Privacy & terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
