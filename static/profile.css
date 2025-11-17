@@ -1,0 +1,56 @@
+.profile-container {
+  max-width: 650px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  font-size: 3.2rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #2a3984;
+  margin-bottom: 20px;
+}
+
+.profile-row {
+  margin: 12px 0;
+}
+
+.profile-row span {
+  font-weight: 600;
+  color: #2a3984;
+  font-size: 1.8rem;
+}
+
+.profile-row .value-text {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.actions {
+  margin-top: 4rem;
+}
+
+.btn {
+  background: #2a3984;
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.btn-secondary {
+  background: #666;
+}
+
+.btn-danger {
+  background: #d9534f;
+}

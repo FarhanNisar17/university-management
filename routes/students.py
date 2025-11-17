@@ -13,16 +13,24 @@ DEPT_CODES = {
     "Others": "OTH"
 }
 
+from sqlalchemy import func
+
 def generate_rollno(department, year):
     dept_code = DEPT_CODES.get(department, "GEN")
 
-    # Count students in same department + year
-    count = Student.query.filter_by(
+    last_roll = db.session.query(Student.rollno).filter_by(
         department=department,
         admission_year=year
-    ).count() + 1
+    ).order_by(Student.rollno.desc()).first()
 
-    return f"{dept_code}-{year}-{count:04d}"
+    if last_roll:
+        # Extract last number (e.g., CS-2028-0002 → 2)
+        last_number = int(last_roll[0].split("-")[-1])
+        new_number = last_number + 1
+    else:
+        new_number = 1
+
+    return f"{dept_code}-{year}-{new_number:04d}"
 
 
 # ------------------------------------------------------
@@ -77,7 +85,9 @@ def register():
         db.session.add(new_student)
         db.session.commit()
 
-        flash(f"Student registered! Roll No: {rollno}", "success")
+        flash(f"Student registered!" , "success")
+        flash(f"Roll No: {rollno}", "info")
+
         return redirect(url_for('students.list_students'))
         
 
