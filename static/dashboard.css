@@ -11,3 +11,14 @@
 .grid--3-cols {
   grid-template-columns: repeat(3, 1fr);
 }
+
+.nav-card{
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.dash-box{
+  width: 400px;
+  height: 100px;
+  background-color: #2a3984;
+}
