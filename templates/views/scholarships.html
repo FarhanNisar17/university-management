@@ -7,6 +7,51 @@
 </head>
 <body>
     {% include 'includes/navigation.html' %}
-    <h1>Scholarships</h1>
+    <h1>All Students</h1>
+
+<form method="GET">
+  <input type="text" name="search" placeholder="Search by name" value="{{ search }}">
+  
+  <select name="dept">
+    <option value="">All Departments</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="Botany">Botany</option>
+    <option value="English">English</option>
+    <option value="MBA">MBA</option>
+    <option value="Others">Others</option>
+  </select>
+
+  <button type="submit">Filter</button>
+</form>
+
+<br>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Name</th>
+    <th>Roll No</th>
+    <th>Department</th>
+    <th>Course</th>
+    <th>Actions</th>
+  </tr>
+
+  {% for s in students %}
+  <tr>
+    <td>{{ s.fullname }}</td>
+    <td>{{ s.rollno }}</td>
+    <td>{{ s.department }}</td>
+    <td>{{ s.course }}</td>
+    <td>
+      <a href="{{ url_for('students.student_profile', id=s.id) }}">Profile</a> |
+      <a href="{{ url_for('students.edit_student', id=s.id) }}">Edit</a> |
+      <a href="{{ url_for('students.delete_student', id=s.id) }}"
+         onclick="return confirm('Are you sure you want to delete this student?');">
+         Delete
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
 </body>
 </html>
