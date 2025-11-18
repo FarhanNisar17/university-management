@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ student.fullname }} - Profile</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='profile.css') }}"
+    />
+  </head>
+  <body>
+    {% include 'includes/navigation.html' %}
+
+    <div class="profile-container">
+      <div class="profile-header">{{ student.fullname }}</div>
+
+      <div class="profile-row">
+        <span>Roll No:</span>
+        <span class="value-text">{{ student.rollno }}</span>
+      </div>
+      <div class="profile-row">
+        <span>DOB:</span> <span class="value-text">{{ student.dob }}</span>
+      </div>
+      <div class="profile-row">
+        <span>Address:</span>
+        <span class="value-text">{{ student.address }}</span>
+      </div>
+      <div class="profile-row">
+        <span>Category:</span>
+        <span class="value-text">{{ student.category }}</span>
+      </div>
+      <div class="profile-row">
+        <span>Department:</span>
+        <span class="value-text">{{ student.department }}</span>
+      </div>
+      <div class="profile-row">
+        <span>Course:</span>
+        <span class="value-text">{{ student.course }}</span>
+      </div>
+      <div class="profile-row">
+        <span>Admission Year:</span>
+        <span class="value-text">{{ student.admission_year }}</span>
+      </div>
+      <div class="profile-row">
+        <span>Gender:</span>
+        <span class="value-text">{{ student.gender }}</span>
+      </div>
+
+      <div class="actions">
+        <a
+          href="{{ url_for('students.edit_student', id=student.id) }}"
+          class="btn"
+          >Edit</a
+        >
+        <a href="/students" class="btn btn-secondary">Back</a>
+        <a
+          href="{{ url_for('students.delete_student', id=student.id) }}"
+          class="btn btn-danger"
+          onclick="return confirm('Are you sure you want to delete this student?');"
+        >
+          Delete
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

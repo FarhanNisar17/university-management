@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Student</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+{% include 'includes/navigation.html' %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<script>
+  Swal.fire({
+    icon: "{{ messages[0][0] }}",
+    html: `
+      {% for category, message in messages %}
+        <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    `,
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 4000,
+    timerProgressBar: true,
+  });
+</script>
+{% endif %}
+{% endwith %}
+
+<div class="container-2 form-edit">
+  <div class="form">
+    <div class="form-text-box">
+      <h2 class="heading-secondary">Edit Student</h2>
+
+      <form class="form-box" method="POST" action="{{ url_for('students.edit_student', id=student.id) }}">
+
+        <div>
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" name="fullname" value="{{ student.fullname }}" required />
+        </div>
+
+        <div>
+          <label for="rollno">Roll Number (Cannot change)</label>
+          <input type="text" value="{{ student.rollno }}" disabled />
+        </div>
+
+        <div>
+          <label for="dateofbirth">Date Of Birth</label>
+          <input type="date" id="dateofbirth" name="dob" value="{{ student.dob }}" required />
+        </div>
+
+        <div>
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" value="{{ student.address }}" required />
+        </div>
+
+        <div>
+          <label for="select-category">Category</label>
+          <select id="select-category" name="category" required>
+            {% for cat in ["General","OBC","SC","ST","Others"] %}
+            <option value="{{ cat }}" {% if student.category == cat %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label for="select-department">Department</label>
+          <select id="select-department" name="department" required>
+            {% for dept in ["Computer Science","Botany","English","MBA","Others"] %}
+            <option value="{{ dept }}" {% if student.department == dept %}selected{% endif %}>{{ dept }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label for="course">Course</label>
+          <input type="text" id="course" name="course" value="{{ student.course }}" required />
+        </div>
+
+        <div>
+          <label for="admission">Admission Year</label>
+          <input type="text" id="admission" name="admission_year" value="{{ student.admission_year }}" required />
+        </div>
+
+        <!-- Gender -->
+        <div class="gender-group-edit">
+          <label for="gender">Gender:</label>
+          <div class="gender-options">
+            {% for g in ["Male","Female","Other"] %}
+            <label>
+              <input type="radio" name="gender" value="{{ g }}" {% if student.gender == g %}checked{% endif %} />
+              <span>{{ g }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <button class="btn btn--form" type="submit">Save Changes</button>
+        <a class="btn btn--form" href="{{ url_for('students.list_students') }}">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% include "/includes/navigation.html" %}
 
 <main class="container">
@@ -27,3 +28,62 @@
 
 <!-- small footer for the view -->
 <footer style="text-align:center; padding:30px 0; color:#666">&copy; {{ (2025) }} University</footer>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'includes/navigation.html' %}
+    <h1>All Students</h1>
+
+<form method="GET">
+  <input type="text" name="search" placeholder="Search by name" value="{{ search }}">
+  
+  <select name="dept">
+    <option value="">All Departments</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="Botany">Botany</option>
+    <option value="English">English</option>
+    <option value="MBA">MBA</option>
+    <option value="Others">Others</option>
+  </select>
+
+  <button type="submit">Filter</button>
+</form>
+
+<br>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Name</th>
+    <th>Roll No</th>
+    <th>Department</th>
+    <th>Course</th>
+    <th>Actions</th>
+  </tr>
+
+  {% for s in students %}
+  <tr>
+    <td>{{ s.fullname }}</td>
+    <td>{{ s.rollno }}</td>
+    <td>{{ s.department }}</td>
+    <td>{{ s.course }}</td>
+    <td>
+      <a href="{{ url_for('students.student_profile', id=s.id) }}">Profile</a> |
+      <a href="{{ url_for('students.edit_student', id=s.id) }}">Edit</a> |
+      <a href="{{ url_for('students.delete_student', id=s.id) }}"
+         onclick="return confirm('Are you sure you want to delete this student?');">
+         Delete
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
+>>>>>>> 975b6e95b3f561b6bfb0332e2dde8b0fe57683ac

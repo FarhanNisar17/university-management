@@ -1,0 +1,46 @@
+.section-dashboard {
+  margin: 8rem 0 8rem 0;
+}
+
+.container-2 {
+    max-width: 120rem;
+    padding: 3rem 3.2rem 0 3.2rem;
+    margin: 2rem auto;
+}
+
+.grid {
+  display: grid;
+  row-gap: 9.6rem;
+  column-gap: 6.4rem;
+  /* margin-bottom: 9.6rem */
+}
+.grid--2-cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.nav-card {
+  color: #fff;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.nav-card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dash-box {
+  width: 30rem;
+  height: 10rem;
+  background-color: #2a3984;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
