@@ -1,0 +1,56 @@
+body {
+    background: #f4f7fb;
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+}
+
+.title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 30px;
+    padding: 0 50px 50px;
+}
+
+.dept-card {
+    display: block;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #222;
+    transition: 0.3s;
+    border-left: 6px solid #4e6cff;
+}
+
+.dept-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.dept-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.dept-card h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+li {
+    margin: 5px 0;
+    font-size: 15px;
+}

@@ -4,17 +4,104 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='form.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+    
   </head>
   <body>
     {% include "/includes/navigation.html" %}
 
-    <img
-      src="{{ url_for('static', filename='images/home.jpg') }}"
-      alt=""
-      class="home"
-    />
+   <main>
+      <section class="section-hero">
+        <div class="hero">
+          <div class="hero-text-box">
+            <h1 class="heading-primary">
+              Welcome!
+            </h1>
+            <p class="hero-description">
+              Empowering Education for the Future
+              Manage students, departments, and academics — all in one place.
+            </p>
 
-    <a class="btn" href="/students">View All Students</a>
-    <a class="btn" href="/students/register">Register New Student</a>
+            <a href="#" class="btn btn--full margin-right-sm"
+              >Register</a
+            >
+            <a href="https://northcampus.uok.edu.in/" class="btn btn--outline btn--scroll" >Learn More &dArr;</a>
+            
+          </div>
+          <div class="hero-img-box">
+            <img src="{{ url_for('static', filename='images/ku.png') }}" alt="" class="hero-img" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-dashboard">
+        <div class="container">
+          <div class="grid grid--3-cols">
+
+            <div class="dash-box">
+              <a href="/students" class="nav-card">
+                <h3>👨‍🎓 Students</h3>
+                <p>View and manage all student records.</p>
+              </a>
+            </div>
+    
+            <div class="dash-box">
+              <a href="/students/register" class="nav-card">
+                <h3>➕ Register Student</h3>
+                <p>Add a new student to the system.</p>
+              </a>
+            </div>
+
+            <div class="dash-box">
+             <a href="/departments" class="nav-card">
+                <h3>🏫 Departments</h3>
+                <p>Browse departments and courses.</p>
+              </a>
+            </div>
+
+            <div class="dash-box">
+              <a href="/courses" class="nav-card">
+                <h3>📚 Courses</h3>
+                <p>Explore course offerings.</p>
+              </a>
+            </div>
+
+            <div class="dash-box">
+              <a href="/hostels" class="nav-card">
+                <h3>🏡 Hostels</h3>
+                <p>View hostel information and details.</p>
+              </a>
+            </div>
+
+            <div class="dash-box">
+              <a href="/transport" class="nav-card">
+                <h3>🚌 Transport</h3>
+                <p>Check transport service availability.</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% include "/includes/footer.html" %}
+
   </body>
 </html>
