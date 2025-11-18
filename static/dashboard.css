@@ -1,3 +1,7 @@
+.section-dashboard {
+  margin: 4.8rem 0 4.8rem 0;
+}
+
 .grid {
   display: grid;
   row-gap: 9.6rem;
