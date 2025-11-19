@@ -59,8 +59,7 @@
           <a
             href="{{ url_for('students.delete_student', id=s.id) }}"
             class="action-btn delete"
-            data-url="{{ url_for('students.delete_student', id=s.id) }}"
-            onclick="event.preventDefault(); confirmDelete(this.getAttribute('data-url'))"
+            onclick="event.preventDefault(); confirmDelete('{{ url_for('students.delete_student', id=s.id) }}')"
           >
             Delete
           </a>
