@@ -17,7 +17,6 @@ from routes.departments import department_bp
 from routes.scholarships import scholarship_bp
 
 
-
 # ------------------ HOME PAGE ------------------
 @app.route('/')
 def home():
