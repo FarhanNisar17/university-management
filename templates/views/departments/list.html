@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Departments</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='departments.css') }}">
-</head>
+{% extends 'base.html' %}
 
-<body>
-    {% include 'includes/navigation.html' %}
+{% block title %}Departments{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='departments.css') }}">
+{% endblock %}
+
+{% block content %}
 
     <h1 class="title">Departments & Courses</h1>
 
@@ -38,6 +38,8 @@
             </ul>
         </a>
 
+        <!-- note: B.Tech students are shown under the Engineering card above -->
+
         <!-- English -->
         <a href="/departments/english" class="dept-card">
             <div class="dept-icon">📚</div>
@@ -62,5 +64,4 @@
 
     </div>
 
-</body>
-</html>
+{% endblock %}

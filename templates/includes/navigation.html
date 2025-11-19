@@ -1,49 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <a href="#"
-        ><img
-          src="{{ url_for('static', filename='images/logo.jpg') }}"
-          alt="Logo"
-          class="logo"
-        />
-      </a>
-      <nav class="main-nav">
-        <ul class="main-nav-list">
-          <li>
-            <a class="main-nav-link" class="main-nav-link" href="/">Home</a>
-          </li>
-          <li><a class="main-nav-link" href="/students">All Students</a></li>
-          <li>
-            <a class="main-nav-link" href="/students/register"
-              >Register Student</a
-            >
-          </li>
-          <li><a class="main-nav-link" href="/departments">Departments</a></li>
-          <li>
-            <a class="main-nav-link" href="/scholarships">Scholarships</a>
-          </li>
-          <li><a class="main-nav-link" href="/hostels">Hostels</a></li>
-          <li>
-            <a class="main-nav-link" href="/transport">Transport Service</a>
-          </li>
-
-          <li>
-            <a class="main-nav-link" href="/contacts">Contact Us</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    {% block content %}{% endblock %}
-  </body>
-</html>
+<header class="header">
+  <a href="/">
+    <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo" />
+  </a>
+  <nav class="main-nav">
+    <ul class="main-nav-list">
+      <li><a class="main-nav-link" href="/">Home</a></li>
+      <li><a class="main-nav-link" href="/students">All Students</a></li>
+      <li><a class="main-nav-link" href="/students/register">Register Student</a></li>
+      <li><a class="main-nav-link" href="/departments">Departments</a></li>
+      <li><a class="main-nav-link" href="/scholarships">Scholarships</a></li>
+      <li><a class="main-nav-link" href="/hostels">Hostels</a></li>
+      <li><a class="main-nav-link" href="/transport">Transport Service</a></li>
+      <li><a class="main-nav-link" href="/contacts">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
