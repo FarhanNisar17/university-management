@@ -19,10 +19,10 @@
             {% endwith %}
 
             <form method="POST" class="needs-validation">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
                     
                     <div class="mb-3">
                         <label for="parentage" class="form-label">Parentage</label>
@@ -57,27 +57,32 @@
                         </div>
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="department" class="form-label">Department</label>
+                        <select id="department" name="department" class="form-select" required>
+                            <option value="">Select Department</option>
+                            <option value="Department of Engineering">Department of Engineering</option>
+                            <option value="Botany">Botany</option>
+                            <option value="English">English</option>
+                            <option value="Department of Management Studies">Department of Management Studies</option>
+                        </select>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="contact" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="contact" name="contact" required>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="course" class="form-label">Course</label>
+                        <select id="course" name="course" class="form-select" required>
+                            <!-- populated by JS -->
+                        </select>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="department" class="form-label">Department</label>
-                            <input type="text" class="form-control" id="department" name="department" value="B.Tech" required>
-                        </div>
-                        
-                        <div class="col-md-6 mb-3">
-                            <label for="admission_year" class="form-label">Admission Year</label>
-                            <input type="text" class="form-control" id="admission_year" name="admission_year" value="2024" required>
-                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="admission_year" class="form-label">Admission Year</label>
+                        <input type="text" class="form-control" id="admission_year" name="admission_year" value="2024" required>
                     </div>
+                </div>
                     
                     <div class="d-flex gap-2">
                         <button type="submit" class="btn btn-primary">Register</button>
@@ -87,6 +92,63 @@
             </div>
         </div>
     </div>
-        </div>
-    </div>
+
+    <script>
+        // department -> courses mapping (updated)
+        const deptCourses = {
+            'Department of Engineering': [
+                'B.Tech in Computer Science',
+                'B.Tech in Artificial Intelligence',
+                'B.Tech in Data Science',
+                'M.Tech',
+                'M.C.A',
+                'PhD in Computer Science'
+            ],
+            'Botany': [
+                'B.Sc Botany',
+                'M.Sc Botany',
+                'B.Sc–M.Sc Integrated',
+                'PhD in Botany'
+            ],
+            'English': [
+                'BA English',
+                'M.Phill / PhD English',
+                'Masters in Education'
+            ],
+            'Department of Management Studies': [
+                'Integrated MBA',
+                'MBA Core',
+                'MBA HR'
+            ]
+        };
+
+        function populateCourses() {
+            const dept = document.getElementById('department').value;
+            const courseSel = document.getElementById('course');
+            courseSel.innerHTML = '';
+            const list = deptCourses[dept] || [];
+            if (list.length === 0) {
+                const opt = document.createElement('option');
+                opt.value = '';
+                opt.textContent = 'Select a department to see courses';
+                opt.disabled = true;
+                opt.selected = true;
+                courseSel.appendChild(opt);
+                courseSel.disabled = true;
+                return;
+            }
+
+            list.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                courseSel.appendChild(opt);
+            });
+            courseSel.disabled = false;
+        }
+
+        document.getElementById('department').addEventListener('change', populateCourses);
+        // populate on load
+        populateCourses();
+    </script>
 {% endblock %}
