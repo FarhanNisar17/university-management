@@ -56,7 +56,7 @@
                 </div>
                 
                 <div class="d-flex gap-2">
-                    <a href="{{ url_for('students_bp.edit_student', student_id=student.id) }}" class="btn btn-warning">Edit</a>
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                     <a href="{{ url_for('students_bp.view_students') }}" class="btn btn-secondary">Back to List</a>
                 </div>
@@ -86,4 +86,142 @@
         </div>
     </div>
     
+    <!-- Edit Modal (inline editable profile) -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Student - {{ student.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form method="POST" action="{{ url_for('students_bp.edit_student', student_id=student.id) }}">
+          <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="name_modal" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name_modal" name="name" value="{{ student.name }}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="parentage_modal" class="form-label">Parentage</label>
+                        <input type="text" class="form-control" id="parentage_modal" name="parentage" value="{{ student.parentage }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="dob_modal" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob_modal" name="dob" value="{{ student.dob }}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="category_modal" class="form-label">Category</label>
+                        <select id="category_modal" name="category" class="form-select" required>
+                            <option value="OM" {% if student.category == 'OM' %}selected{% endif %}>OM</option>
+                            <option value="OBC" {% if student.category == 'OBC' %}selected{% endif %}>OBC</option>
+                            <option value="SC" {% if student.category == 'SC' %}selected{% endif %}>SC</option>
+                            <option value="ST" {% if student.category == 'ST' %}selected{% endif %}>ST</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="gender_modal" class="form-label">Gender</label>
+                        <select id="gender_modal" name="gender" class="form-select" required>
+                            <option value="M" {% if student.gender == 'M' %}selected{% endif %}>Male</option>
+                            <option value="F" {% if student.gender == 'F' %}selected{% endif %}>Female</option>
+                            <option value="O" {% if student.gender == 'O' %}selected{% endif %}>Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="department_modal" class="form-label">Department</label>
+                        <select id="department_modal" name="department" class="form-select" required>
+                            <option value="">Select Department</option>
+                            <option value="Department of Engineering" {% if student.department == 'Department of Engineering' %}selected{% endif %}>Department of Engineering</option>
+                            <option value="Botany" {% if student.department == 'Botany' %}selected{% endif %}>Botany</option>
+                            <option value="English" {% if student.department == 'English' %}selected{% endif %}>English</option>
+                            <option value="Department of Management Studies" {% if student.department == 'Department of Management Studies' %}selected{% endif %}>Department of Management Studies</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="course_modal" class="form-label">Course</label>
+                        <select id="course_modal" name="course" class="form-select" required>
+                            <!-- populated by JS -->
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="admission_year_modal" class="form-label">Admission Year</label>
+                        <input type="text" class="form-control" id="admission_year_modal" name="admission_year" value="{{ student.admission_year }}" required>
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        // Dept->courses mapping used in other templates as well
+        const deptCoursesModal = {
+            'Department of Engineering': [
+                'B.Tech in Computer Science',
+                'B.Tech in Artificial Intelligence',
+                'B.Tech in Data Science',
+                'M.Tech',
+                'M.C.A',
+                'PhD in Computer Science'
+            ],
+            'Botany': [
+                'B.Sc Botany',
+                'M.Sc Botany',
+                'B.Sc–M.Sc Integrated',
+                'PhD in Botany'
+            ],
+            'English': [
+                'BA English',
+                'M.Phill / PhD English',
+                'Masters in Education'
+            ],
+            'Department of Management Studies': [
+                'Integrated MBA',
+                'MBA Core',
+                'MBA HR'
+            ]
+        };
+
+        function populateCourseModal() {
+            const dept = document.getElementById('department_modal').value;
+            const sel = document.getElementById('course_modal');
+            sel.innerHTML = '';
+            const list = deptCoursesModal[dept] || [];
+            if (list.length === 0) {
+                const opt = document.createElement('option');
+                opt.value = '';
+                opt.textContent = 'Select a department to see courses';
+                opt.disabled = true;
+                opt.selected = true;
+                sel.appendChild(opt);
+                sel.disabled = true;
+                return;
+            }
+            list.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                if (c === '{{ student.course }}') opt.selected = true;
+                sel.appendChild(opt);
+            });
+            sel.disabled = false;
+        }
+
+        document.getElementById('department_modal').addEventListener('change', populateCourseModal);
+        // populate when modal shown
+        var editModal = document.getElementById('editModal');
+        editModal.addEventListener('shown.bs.modal', function (event) {
+            populateCourseModal();
+        });
+    </script>
     {% endblock %}

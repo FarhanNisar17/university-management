@@ -1,57 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% include 'includes/navigation.html' %}
-    <h1>All Students</h1>
+{% extends 'base.html' %}
 
-<form method="GET">
-  <input type="text" name="search" placeholder="Search by name" value="{{ search }}">
-  
-  <select name="dept">
-    <option value="">All Departments</option>
-    <option value="Computer Science">Computer Science</option>
-    <option value="Botany">Botany</option>
-    <option value="English">English</option>
-    <option value="MBA">MBA</option>
-    <option value="Others">Others</option>
-  </select>
+{% block title %}Scholarships{% endblock %}
 
-  <button type="submit">Filter</button>
-</form>
+{% block content %}
+  <div class="row">
+    <div class="col-12">
+      <h2>Scholarships</h2>
 
-<br>
+      <form method="GET" class="row g-2 mb-3">
+        <div class="col-md-6">
+          <input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ search or '' }}">
+        </div>
+        <div class="col-md-4">
+          <select name="dept" class="form-select">
+            <option value="">All Departments</option>
+            <option value="Department of Engineering">Department of Engineering</option>
+            <option value="Botany">Botany</option>
+            <option value="English">English</option>
+            <option value="Department of Management Studies">Department of Management Studies</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+      </form>
 
-<table border="1" cellpadding="10">
-  <tr>
-    <th>Name</th>
-    <th>Roll No</th>
-    <th>Department</th>
-    <th>Course</th>
-    <th>Actions</th>
-  </tr>
-
-  {% for s in students %}
-  <tr>
-    <td>{{ s.fullname }}</td>
-    <td>{{ s.rollno }}</td>
-    <td>{{ s.department }}</td>
-    <td>{{ s.course }}</td>
-    <td>
-      <a href="{{ url_for('students.student_profile', id=s.id) }}">Profile</a> |
-      <a href="{{ url_for('students.edit_student', id=s.id) }}">Edit</a> |
-      <a href="{{ url_for('students.delete_student', id=s.id) }}"
-         onclick="return confirm('Are you sure you want to delete this student?');">
-         Delete
-      </a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
-
-</body>
-</html>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Name</th>
+              <th>Roll No</th>
+              <th>Department</th>
+              <th>Course</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if students %}
+              {% for s in students %}
+                <tr>
+                  <td>{{ s.fullname }}</td>
+                  <td>{{ s.rollno }}</td>
+                  <td>{{ s.department }}</td>
+                  <td>{{ s.course }}</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-info">Profile</a>
+                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="5" class="text-center">No scholarship entries found.</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
