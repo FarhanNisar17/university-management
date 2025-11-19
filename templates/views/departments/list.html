@@ -1,66 +1,67 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Departments</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='departments.css') }}"
-    />
-  </head>
+{% extends 'base.html' %}
 
-  <body>
-    {% include 'includes/navigation.html' %}
+{% block title %}Departments{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='departments.css') }}">
+{% endblock %}
+
+{% block content %}
 
     <h1 class="title">Departments & Courses</h1>
 
     <div class="grid-container">
-      <!-- Engineering -->
-      <a href="/departments/computer-science" class="dept-card">
-        <div class="dept-icon">🏛️</div>
-        <h3>Department of Engineering</h3>
-        <ul>
-          <li>B.Tech in Computer Science</li>
-          <li>B.Tech in Artificial Intelligence</li>
-          <li>B.Tech in Data Science</li>
-          <li>M.Tech</li>
-          <li>M.C.A</li>
-          <li>PhD in Computer Science</li>
-        </ul>
-      </a>
 
-      <!-- Botany -->
-      <a href="/departments/botany" class="dept-card">
-        <div class="dept-icon">🌿</div>
-        <h3>Botany</h3>
-        <ul>
-          <li>B.Sc Botany</li>
-          <li>M.Sc Botany</li>
-          <li>B.Sc–M.Sc Integrated</li>
-          <li>PhD in Botany</li>
-        </ul>
-      </a>
+        <!-- Engineering -->
+        <a href="/departments/computer-science" class="dept-card">
+            <div class="dept-icon">🏛️</div>
+            <h3>Department of Engineering</h3>
+            <ul>
+                <li>B.Tech in Computer Science</li>
+                <li>B.Tech in Artificial Intelligence</li>
+                <li>B.Tech in Data Science</li>
+                <li>M.Tech</li>
+                <li>M.C.A</li>
+                <li>PhD in Computer Science</li>
+            </ul>
+        </a>
 
-      <!-- English -->
-      <a href="/departments/english" class="dept-card">
-        <div class="dept-icon">📚</div>
-        <h3>English</h3>
-        <ul>
-          <li>BA English</li>
-          <li>M.Phill / PhD English</li>
-          <li>Masters in Education</li>
-        </ul>
-      </a>
+        <!-- Botany -->
+        <a href="/departments/botany" class="dept-card">
+            <div class="dept-icon">🌿</div>
+            <h3>Botany</h3>
+            <ul>
+                <li>B.Sc Botany</li>
+                <li>M.Sc Botany</li>
+                <li>B.Sc–M.Sc Integrated</li>
+                <li>PhD in Botany</li>
+            </ul>
+        </a>
 
-      <!-- MBA -->
-      <a href="/departments/mba" class="dept-card">
-        <div class="dept-icon">💼</div>
-        <h3>Department of Management Studies</h3>
-        <ul>
-          <li>Integrated MBA</li>
-          <li>MBA Core</li>
-          <li>MBA HR</li>
-        </ul>
-      </a>
+        <!-- note: B.Tech students are shown under the Engineering card above -->
+
+        <!-- English -->
+        <a href="/departments/english" class="dept-card">
+            <div class="dept-icon">📚</div>
+            <h3>English</h3>
+            <ul>
+                <li>BA English</li>
+                <li>M.Phill / PhD English</li>
+                <li>Masters in Education</li>
+            </ul>
+        </a>
+
+        <!-- MBA -->
+        <a href="/departments/mba" class="dept-card">
+            <div class="dept-icon">💼</div>
+            <h3>Department of Management Studies</h3>
+            <ul>
+                <li>Integrated MBA</li>
+                <li>MBA Core</li>
+                <li>MBA HR</li>
+            </ul>
+        </a>
+
     </div>
-  </body>
-</html>
+
+{% endblock %}

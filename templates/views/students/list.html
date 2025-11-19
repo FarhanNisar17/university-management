@@ -31,66 +31,46 @@
       });
     </script>
     {% endif %} {% endwith %} {% include 'includes/navigation.html' %}
-
-    <div class="sort-box">
-      <label>Sort by:</label>
-      <select class="sort-select">
-        <option value="0">Name</option>
-        <option value="1">Roll No</option>
-        <option value="2">DOB</option>
-        <option value="3">Address</option>
-        <option value="4">Category</option>
-        <option value="5">Department</option>
-        <option value="6">Course</option>
-        <option value="7">Year</option>
-        <option value="8">Gender</option>
-      </select>
-    </div>
-
     <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Roll No</th>
-          <th>DOB</th>
-          <th>Address</th>
-          <th>Category</th>
-          <th>Department</th>
-          <th>Course</th>
-          <th>Year</th>
-          <th>Gender</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
 
-      <tbody>
-        {% for s in students %}
-        <tr>
-          <td>{{ s.fullname }}</td>
-          <td>{{ s.rollno }}</td>
-          <td>{{ s.dob }}</td>
-          <td>{{ s.address }}</td>
-          <td>{{ s.category }}</td>
-          <td>{{ s.department }}</td>
-          <td>{{ s.course }}</td>
-          <td>{{ s.admission_year }}</td>
-          <td>{{ s.gender }}</td>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.fullname }}</td>
+        <td>{{ s.rollno }}</td>
+        <td>{{ s.department }}</td>
+        <td>
+          <a
+            class="action-btn"
+            href="{{ url_for('students.student_profile', id=s.id) }}"
+            >Profile</a
+          >
+          <a
+            class="action-btn"
+            href="{{ url_for('students.edit_student', id=s.id) }}"
+            >Edit</a
+          >
 
-          <td>
-            <a
-              class="action-btn"
-              href="{{ url_for('students.student_profile', id=s.id) }}"
-              >Profile</a
-            >
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
+          <a
+            href="{{ url_for('students.delete_student', id=s.id) }}"
+            class="action-btn delete"
+            data-url="{{ url_for('students.delete_student', id=s.id) }}"
+            onclick="event.preventDefault(); confirmDelete(this.getAttribute('data-url'))"
+          >
+            Delete
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
     </table>
   </body>
   <script
     defer
     src="{{ url_for('static', filename='js/warning.js') }}"
   ></script>
-  <script src="{{ url_for('static', filename='js/detail.js') }}"></script>
 </html>

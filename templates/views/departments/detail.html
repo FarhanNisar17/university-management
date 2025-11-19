@@ -1,65 +1,89 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ dept_name }} Department</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='detail.css') }}"
-    />
-  </head>
+{% extends 'base.html' %}
 
-  <body>
-    {% include 'includes/navigation.html' %}
+{% block title %}{{ dept_name }} Department{% endblock %}
 
-    <h1>{{ dept_name }} Department</h1>
+{% block head_extra %}
+<style>
+    body { background: #f5f7fb; }
+    h1 { text-align:center; margin:30px 0; font-size:32px; font-weight:700; }
+    .accordion { background:#eef1ff; padding:15px 20px; margin:10px auto; width:100%; border-radius:10px; cursor:pointer; font-size:20px; font-weight:600; border-left:6px solid #4e6cff; display:flex; justify-content:space-between; align-items:center; }
+    .panel { display:none; background:white; width:100%; margin-bottom:15px; padding:0; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:12px 15px; border-bottom:1px solid #e0e0e0; }
+    th { background:#4e6cff; color:white; text-align:left; }
+</style>
+{% endblock %}
 
-    {% if batches %} {% for year, students in batches.items() %}
+{% block content %}
 
-    <!-- Accordion Button -->
-    <div class="accordion">
-      Batch {{ year }}
-      <span class="count"> ({{ students|length }} students) </span>
-      <span class="arrow">▶</span>
+    <div style="width:100%; margin:0 auto 20px; display:flex; justify-content:space-between; align-items:center;">
+        <h1 style="margin:0;">{{ dept_name }}</h1>
+
+        <div>
+            <form method="get" id="sortForm" class="d-flex gap-2">
+                <label style="align-self:center; font-weight:600; margin-right:6px;">Sort:</label>
+                <select name="sort_by" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit();">
+                    <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Alphabet (Name)</option>
+                    <option value="admission_year" {% if sort_by == 'admission_year' %}selected{% endif %}>Admission Year</option>
+                    <option value="gender" {% if sort_by == 'gender' %}selected{% endif %}>Gender</option>
+                    <option value="category" {% if sort_by == 'category' %}selected{% endif %}>Category</option>
+                </select>
+
+                <select name="order" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit();">
+                    <option value="asc" {% if order == 'asc' %}selected{% endif %}>Ascending</option>
+                    <option value="desc" {% if order == 'desc' %}selected{% endif %}>Descending</option>
+                </select>
+            </form>
+        </div>
     </div>
 
-    <!-- Panel -->
-    <div class="panel">
-      <div class="sort-box">
-        <label>Sort by:</label>
-        <select class="sort-select">
-          <option value="0">Roll No</option>
-          <option value="1">Name</option>
-          <option value="2">DOB</option>
-          <option value="3">Address</option>
-          <option value="4">Category</option>
-          <option value="5">Course</option>
-          <option value="6">Year</option>
-          <option value="7">Gender</option>
-        </select>
-      </div>
-      <table>
-        <tbody>
-          {% for s in students %}
-          <tr>
-            <td>{{ s.rollno }}</td>
-            <td>{{ s.fullname }}</td>
-            <td>{{ s.dob }}</td>
-            <td>{{ s.address }}</td>
-            <td>{{ s.category }}</td>
-            <td>{{ s.course }}</td>
-            <td>{{ s.admission_year }}</td>
-            <td>{{ s.gender }}</td>
-          </tr>
+    {% if batches %}
+        {% for year, students in batches.items() %}
 
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+            <div class="accordion">Batch {{ year }} ({{ students|length }} students) <span class="arrow">▶</span></div>
+            <div class="panel" {% if year == '2025' %}style="background: linear-gradient(135deg,#fff9e6,#fff1c6);"{% endif %}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parentage</th>
+                            <th>DOB</th>
+                            <th>Category</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in students %}
+                        <tr>
+                            <td>{{ s.name }}</td>
+                            <td>{{ s.parentage }}</td>
+                            <td>{{ s.dob }}</td>
+                            <td>{{ s.category }}</td>
+                            <td>{{ s.gender }}</td>
+                            <td>{{ s.email }}</td>
+                            <td>{{ s.contact }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-    {% endfor %} {% else %}
-    <p class="empty-msg">No students registered in this department.</p>
+        {% endfor %}
+    {% else %}
+        <p class="empty-msg">No students registered in this department.</p>
     {% endif %}
 
-    <script src="{{ url_for('static', filename='js/detail.js') }}"></script>
-  </body>
-</html>
+    <script>
+        const acc = document.querySelectorAll(".accordion");
+        acc.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                btn.classList.toggle("active");
+                const panel = btn.nextElementSibling;
+                if (panel.style.display === "block") panel.style.display = "none"; else panel.style.display = "block";
+            });
+        });
+    </script>
+
+{% endblock %}
