@@ -10,10 +10,11 @@ department_bp = Blueprint("department", __name__, url_prefix="/departments")
 # 'Department of Engineering'. This keeps student rows under the Engineering
 # department while storing 'B.Tech' in the DB.
 DEPARTMENT_MAP = {
-    "computer-science": {"db": "B.Tech", "label": "Department of Engineering"},
-    "botany": {"db": "Botany", "label": "Botany"},
-    "english": {"db": "English", "label": "English"},
-    "mba": {"db": "MBA", "label": "MBA"}
+    # support both legacy 'B.Tech' and new 'Department of Engineering' values in DB
+    "computer-science": {"db": ["B.Tech", "Department of Engineering"], "label": "Department of Engineering"},
+    "botany": {"db": ["Botany"], "label": "Botany"},
+    "english": {"db": ["English"], "label": "English"},
+    "mba": {"db": ["MBA", "Department of Management Studies"], "label": "Department of Management Studies"}
 }
 
 @department_bp.route("/")
@@ -33,8 +34,11 @@ def department_detail(slug):
     sort_by = request.args.get('sort_by', 'name')  # options: name, admission_year, gender, category
     order = request.args.get('order', 'asc')
 
-    # Query using the DB stored department value
-    query = Student.query.filter_by(department=dept_db)
+    # Query using the DB stored department value(s)
+    if isinstance(dept_db, (list, tuple)):
+        query = Student.query.filter(Student.department.in_(dept_db))
+    else:
+        query = Student.query.filter_by(department=dept_db)
 
     # Apply ordering
     if sort_by == 'admission_year':

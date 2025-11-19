@@ -8,6 +8,71 @@
         <a href="{{ url_for('students_bp.register_student') }}" class="btn btn-primary">+ Register New Student</a>
     </div>
 
+    <form method="get" class="row g-2 mb-3">
+        <div class="col-md-3">
+            <label for="department_filter" class="form-label">Sort By Department</label>
+            <select id="department_filter" name="department" class="form-select">
+                <option value="">All Departments</option>
+                {% for dept in departments %}
+                    <option value="{{ dept }}" {% if selected_department == dept %}selected{% endif %}>{{ dept }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label for="sort_by" class="form-label">Sort By</label>
+            <select id="sort_by" name="sort_by" class="form-select">
+                <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Alphabet (Name)</option>
+                <option value="department" {% if sort_by == 'department' %}selected{% endif %}>Department</option>
+                <option value="year" {% if sort_by == 'year' %}selected{% endif %}>Year of Admission</option>
+                <option value="gender" {% if sort_by == 'gender' %}selected{% endif %}>Gender</option>
+                <option value="category" {% if sort_by == 'category' %}selected{% endif %}>Category</option>
+                <option value="recent" {% if sort_by == 'recent' %}selected{% endif %}>Recent</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="order" class="form-label">Order</label>
+            <select id="order" name="order" class="form-select">
+                <option value="asc" {% if order == 'asc' %}selected{% endif %}>Ascending</option>
+                <option value="desc" {% if order == 'desc' %}selected{% endif %}>Descending</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label for="q" class="form-label">Search</label>
+            <div class="input-group">
+                <input type="text" id="q" name="q" class="form-control" placeholder="Search name or course" value="{{ q or '' }}">
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </div>
+        </div>
+
+        <div class="col-md-1 d-flex align-items-end">
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#statsModal">Stats</button>
+        </div>
+    </form>
+
+    <!-- Stats Modal -->
+    <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="statsModalLabel">Students Statistics</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Total students:</strong> {{ stats.total }}</p>
+            <p><strong>Male:</strong> {{ stats.male }} ({{ stats.male_pct }}%)</p>
+            <p><strong>Female:</strong> {{ stats.female }} ({{ stats.female_pct }}%)</p>
+            <p><strong>Other:</strong> {{ stats.other }} ({{ stats.other_pct }}%)</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}

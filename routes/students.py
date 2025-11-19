@@ -2,15 +2,83 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from models.students import Student
 from util.extensions import db
 from datetime import datetime
+from sqlalchemy import asc, desc
 
 students_bp = Blueprint('students_bp', __name__, url_prefix='/students')
 
 @students_bp.route('/')
 def view_students():
-    all_students = Student.query.all()
+    # filters
+    department = request.args.get('department', type=str)
+    q = request.args.get('q', type=str)
+
+    # sorting
+    sort_by = request.args.get('sort_by', 'name')  # options: name, department, year, gender, category, recent
+    order = request.args.get('order', 'asc')
+
+    query = Student.query
+    if department:
+        query = query.filter_by(department=department)
+    if q:
+        # simple search on name or course
+        term = f"%{q}%"
+        query = query.filter((Student.name.ilike(term)) | (Student.course.ilike(term)))
+
+    # determine ordering column
+    if sort_by == 'department':
+        ordering = Student.department
+    elif sort_by == 'year':
+        ordering = Student.admission_year
+    elif sort_by == 'gender':
+        ordering = Student.gender
+    elif sort_by == 'category':
+        ordering = Student.category
+    elif sort_by == 'recent':
+        ordering = Student.id
+    else:
+        ordering = Student.name
+
+    if order == 'desc':
+        query = query.order_by(desc(ordering))
+    else:
+        query = query.order_by(asc(ordering))
+
+    all_students = query.all()
+
+    # departments for filter dropdown
+    departments = [
+        'Department of Engineering',
+        'Botany',
+        'English',
+        'Department of Management Studies'
+    ]
+
+    # Stats (overall)
+    total = Student.query.count()
+    male = Student.query.filter_by(gender='M').count()
+    female = Student.query.filter_by(gender='F').count()
+    other = total - (male + female)
+    male_pct = (male / total * 100) if total else 0
+    female_pct = (female / total * 100) if total else 0
+    other_pct = (other / total * 100) if total else 0
+
     return render_template(
         'views/students.html',
-        all_students=all_students
+        all_students=all_students,
+        selected_department=department,
+        departments=departments,
+        sort_by=sort_by,
+        order=order,
+        q=q,
+        stats={
+            'total': total,
+            'male': male,
+            'female': female,
+            'other': other,
+            'male_pct': round(male_pct, 1),
+            'female_pct': round(female_pct, 1),
+            'other_pct': round(other_pct, 1)
+        }
     )
 
 @students_bp.route('/register', methods=['GET', 'POST'])
@@ -23,27 +91,19 @@ def register_student():
             dob = request.form.get('dob')
             category = request.form.get('category')
             gender = request.form.get('gender')
-            email = request.form.get('email')
-            contact = request.form.get('contact')
-            department = request.form.get('department', 'B.Tech')
+            department = request.form.get('department', 'Department of Engineering')
+            course = request.form.get('course')
             admission_year = request.form.get('admission_year', '2024')
-            
-            # Check if email already exists
-            existing_student = Student.query.filter_by(email=email).first()
-            if existing_student:
-                flash('Email already registered!', 'danger')
-                return redirect(url_for('students_bp.register_student'))
-            
-            # Create new student
+
+            # Create new student (we no longer require email/contact during registration)
             new_student = Student(
                 name=name,
                 parentage=parentage,
                 dob=datetime.strptime(dob, '%Y-%m-%d').date() if dob else None,
                 category=category,
                 gender=gender,
-                email=email,
-                contact=contact,
                 department=department,
+                course=course,
                 admission_year=admission_year
             )
             
@@ -76,9 +136,8 @@ def edit_student(student_id):
             student.dob = datetime.strptime(dob, '%Y-%m-%d').date() if dob else None
             student.category = request.form.get('category')
             student.gender = request.form.get('gender')
-            student.email = request.form.get('email')
-            student.contact = request.form.get('contact')
             student.department = request.form.get('department')
+            student.course = request.form.get('course')
             student.admission_year = request.form.get('admission_year')
             
             db.session.commit()
