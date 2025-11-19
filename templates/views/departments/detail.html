@@ -1,172 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>{{ dept_name }} Department</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='detail.css') }}"
+    />
+  </head>
 
-    <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            background: #f5f7fb;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin: 30px 0;
-            font-size: 32px;
-            font-weight: 700;
-        }
-
-        /* Accordion Button */
-        .accordion {
-            background: #eef1ff;
-            padding: 15px 20px;
-            margin: 10px auto;
-            width: 80%;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: 600;
-            border-left: 6px solid #4e6cff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .accordion:hover {
-            background: #e1e4ff;
-        }
-
-        .accordion .arrow {
-            transition: transform 0.3s;
-            font-size: 20px;
-        }
-
-        .accordion.active .arrow {
-            transform: rotate(90deg);
-        }
-
-        /* Panel */
-        .panel {
-            display: none;
-            background: white;
-            width: 80%;
-            margin: 0 auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            padding: 0;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        /* Fade animation */
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-
-        /* Table Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e0e0e0;
-            word-wrap: break-word;
-        }
-
-        th {
-            background: #4e6cff;
-            color: white;
-            text-align: left;
-            font-size: 16px;
-        }
-
-        tr:nth-child(even) {
-            background: #f7f9ff;
-        }
-
-        tr:hover td {
-            background: #eef2ff;
-        }
-
-        .empty-msg {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 18px;
-        }
-    </style>
-</head>
-
-<body>
-
+  <body>
     {% include 'includes/navigation.html' %}
 
     <h1>{{ dept_name }} Department</h1>
 
-    {% if batches %}
-        {% for year, students in batches.items() %}
+    {% if batches %} {% for year, students in batches.items() %}
 
-            <!-- Accordion Button -->
-            <div class="accordion">
-                Batch {{ year }}
-                <span class="arrow">▶</span>
-            </div>
+    <!-- Accordion Button -->
+    <div class="accordion">
+      Batch {{ year }}
+      <span class="count"> ({{ students|length }} students) </span>
+      <span class="arrow">▶</span>
+    </div>
 
-            <!-- Panel -->
-            <div class="panel">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 35%;">Name</th>
-                            <th style="width: 30%;">Roll No</th>
-                            <th style="width: 35%;">Course</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for s in students %}
-                        <tr>
-                            <td>{{ s.fullname }}</td>
-                            <td>{{ s.rollno }}</td>
-                            <td>{{ s.course }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+    <!-- Panel -->
+    <div class="panel">
+      <div class="sort-box">
+        <label>Sort by:</label>
+        <select class="sort-select">
+          <option value="0">Roll No</option>
+          <option value="1">Name</option>
+          <option value="2">DOB</option>
+          <option value="3">Address</option>
+          <option value="4">Category</option>
+          <option value="5">Course</option>
+          <option value="6">Year</option>
+          <option value="7">Gender</option>
+        </select>
+      </div>
+      <table>
+        <tbody>
+          {% for s in students %}
+          <tr>
+            <td>{{ s.rollno }}</td>
+            <td>{{ s.fullname }}</td>
+            <td>{{ s.dob }}</td>
+            <td>{{ s.address }}</td>
+            <td>{{ s.category }}</td>
+            <td>{{ s.course }}</td>
+            <td>{{ s.admission_year }}</td>
+            <td>{{ s.gender }}</td>
+          </tr>
 
-        {% endfor %}
-    {% else %}
-        <p class="empty-msg">No students registered in this department.</p>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% endfor %} {% else %}
+    <p class="empty-msg">No students registered in this department.</p>
     {% endif %}
 
-
-    <!-- Accordion Script -->
-    <script>
-        const acc = document.querySelectorAll(".accordion");
-
-        acc.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                btn.classList.toggle("active");
-
-                const panel = btn.nextElementSibling;
-                const arrow = btn.querySelector(".arrow");
-
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        });
-    </script>
-
-</body>
+    <script src="{{ url_for('static', filename='js/detail.js') }}"></script>
+  </body>
 </html>
