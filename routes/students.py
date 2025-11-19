@@ -37,26 +37,32 @@ def generate_rollno(department, year):
 # 1. LIST ALL STUDENTS  (THIS ROUTE WAS MISSING)
 # ------------------------------------------------------
 @students_bp.route('/')
-def list_students():
-    search = request.args.get("search", "")
-    department = request.args.get("dept", "")
+def student_departments():
+    departments = ["Computer Science", "Botany", "English", "MBA"]
+    return render_template("views/students/students_departments.html",
+                           departments=departments)
 
-    query = Student.query
 
-    if search:
-        query = query.filter(Student.fullname.ilike(f"%{search}%"))
+@students_bp.route('/<dept>')
+def department_batches(dept):
+    students = Student.query.filter_by(department=dept).all()
 
-    if department:
-        query = query.filter_by(department=department)
+    # Extract years from admission_year
+    years = sorted({s.admission_year for s in students})
 
-    students = query.all()
+    return render_template("views/students/students_years.html",
+                           dept=dept,
+                           years=years)
 
-    return render_template(
-        'views/students/list.html',
-        students=students,
-        search=search,
-        department_filter=department
-    )
+
+@students_bp.route('/<dept>/<year>')
+def students_in_batch(dept, year):
+    students = Student.query.filter_by(department=dept, admission_year=year).all()
+
+    return render_template("views/students/students_list_batch.html",
+                           dept=dept,
+                           year=year,
+                           students=students)
 
 
 # ------------------------------------------------------
@@ -88,7 +94,9 @@ def register():
         flash(f"Student registered!" , "success")
         flash(f"Roll No: {rollno}", "info")
 
-        return redirect(url_for('students.list_students'))
+        return redirect(url_for('students.student_departments'))
+
+
         
 
     return render_template('views/students/register.html')
@@ -124,6 +132,7 @@ def edit_student(id):
         flash("Student updated!", "success")
         return redirect(url_for('students.list_students'))
 
+
     return render_template('views/students/edit.html', student=student)
 
 
@@ -139,3 +148,4 @@ def delete_student(id):
     
     flash("Student deleted!", "info")
     return redirect(url_for('students.list_students'))
+
