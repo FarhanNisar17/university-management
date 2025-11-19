@@ -13,6 +13,7 @@ from models.students import Student
 # Import blueprints
 from routes.students import students_bp
 from routes.departments import department_bp
+from routes.scholarships import scholarship_bp
 
 
 # ------------------ HOME PAGE ------------------
@@ -23,7 +24,9 @@ def home():
 # Register blueprints
 app.register_blueprint(students_bp)
 app.register_blueprint(department_bp)
-
+app.register_blueprint(scholarship_bp)
+from routes.hostel import hostel_bp
+app.register_blueprint(hostel_bp)
 
 # ------------------ RUN APP ------------------
 if __name__ == '__main__':
