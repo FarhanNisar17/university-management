@@ -25,7 +25,8 @@ def home():
 app.register_blueprint(students_bp)
 app.register_blueprint(department_bp)
 app.register_blueprint(scholarship_bp)
-
+from routes.hostel import hostel_bp
+app.register_blueprint(hostel_bp)
 
 # ------------------ RUN APP ------------------
 if __name__ == '__main__':

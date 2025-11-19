@@ -1,51 +1,180 @@
-{% extends "includes/navigation.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostel Details</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom right, #2e3b77, #8796c0);
+            color: #f5f0e8;
+            padding: 40px 0;
+        }
 
-{% block content %}
-<div class="container">
-  <h1>University Hostels</h1>
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(6px);
+            margin: auto;
+            padding: 40px;
+            border-radius: 20px;
+        }
 
-  <div class="hostel-grid">
+        h1 {
+            text-align: center;
+            font-size: 46px;
+            margin-bottom: 10px;
+        }
 
-    <div class="hostel-card">
-      <h2>Jhelum Boys Hostel</h2>
-      <p><strong>Type:</strong> Boys Hostel</p>
-      <p><strong>Location:</strong> North Campus</p>
-      <p><strong>Capacity:</strong> 240 Students</p>
-      <p><strong>Warden:</strong> Mr. A. Qureshi</p>
-      <p><strong>Contact:</strong> +91-9876543210</p>
-      <p><strong>Facilities:</strong> Wi-Fi, Mess, Laundry, Study Room</p>
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #fdfdfd;
+        }
+
+        .hostel-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .hostel-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .count {
+            font-size: 22px;
+            margin: 10px 0 20px;
+            color: #fff0d9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        table th {
+            background: rgba(0, 0, 0, 0.4);
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'includes/navigation.html' %}
+
+    <hr style="width:90%; margin:auto; margin-bottom:30px; border:1px solid rgba(255,255,255,0.6);">
+
+    <div class="container" style="display:flex; gap:40px; align-items:flex-start;">
+
+        <!-- LEFT SIDE: HOSTEL INFO -->
+        <div style="flex:2;">
+            <h1>Hostel Information</h1>
+            <div class="subtitle">Details of currently enrolled students in both hostels</div>
+
+            <!-- Boys Hostel -->
+            <div class="hostel-box">
+                <div class="hostel-title">Mir Syed Ali Hamdani Boys Hostel</div>
+                <div class="count">Currently Present: <strong>120 Students</strong></div>
+                <table>
+                    <tr>
+                        <th>Room No.</th>
+                        <th>Student Name</th>
+                        <th>Department</th>
+                        <th>Year/Semester</th>
+                    </tr>
+                    <tr>
+                        <td>206</td>
+                        <td>Shah Arsalan</td>
+                        <td>B.Tech</td>
+                        <td>5th Sem</td>
+                    </tr>
+                    <tr>
+                        <td>106</td>
+                        <td>Zakir Hussain</td>
+                        <td>MCA</td>
+                        <td>3rd Sem</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Girls Hostel -->
+            <div class="hostel-box">
+                <div class="hostel-title">Bibi Khadija Girls Hostel</div>
+                <div class="count">Currently Present: <strong>95 Students</strong></div>
+                <table>
+                    <tr>
+                        <th>Room No.</th>
+                        <th>Student Name</th>
+                        <th>Department</th>
+                        <th>Year/Semester</th>
+                    </tr>
+                    <tr>
+                        <td>110</td>
+                        <td>Anabia Bhat</td>
+                        <td>Botany</td>
+                        <td>5th Sem</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>Syed Anoosh</td>
+                        <td>Btech</td>
+                        <td>1st Sem</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: HOSTEL REGISTRATION FORM -->
+        <div style="flex:1; background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); padding:30px; border-radius:18px; color:#3a2b1c; font-family:'Georgia';">
+            <h2 style="text-align:center; margin-bottom:20px; font-size:30px; font-weight:bold; color:#fff;">Hostel Registration</h2>
+            <form>
+                <label style="font-size:18px; font-weight:bold; color:#fff;">Full Name</label>
+                <input type="text" placeholder="Enter full name" required style="width:100%; padding:14px; border:none; border-radius:8px; background:#fff5eb; margin-bottom:18px;">
+
+                <label style="font-size:18px; font-weight:bold; color:#fff;">Parentage</label>
+                <input type="text" placeholder="Enter parent/guardian name" required style="width:100%; padding:14px; border:none; border-radius:8px; background:#fff5eb; margin-bottom:18px;">
+
+                <label style="font-size:18px; font-weight:bold; color:#fff;">Address</label>
+                <textarea placeholder="Enter full address" required style="width:100%; padding:14px; border:none; border-radius:8px; background:#fff5eb; margin-bottom:18px; height:80px;"></textarea>
+
+                <label style="font-size:18px; font-weight:bold; color:#fff;">Distance From Campus (in km)</label>
+                <input type="number" placeholder="e.g. 65" required style="width:100%; padding:14px; border:none; border-radius:8px; background:#fff5eb; margin-bottom:5px;">
+
+                <p style="color:#ffe0e0; font-size:14px; margin-bottom:18px;">* Must be more than 50 km from the campus</p>
+
+                <label style="font-size:18px; font-weight:bold; color:#fff;">Department</label>
+                <select required style="width:100%; padding:14px; border:none; border-radius:8px; background:#fff5eb; margin-bottom:18px;">
+                    <option value="">Select Department</option>
+                    <option>B.Tech</option>
+                    <option>Botany</option>
+                    <option>English</option>
+                    <option>MCA</option>
+                </select>
+
+                <label style="font-size:18px; font-weight:bold; color:#fff;">Year / Semester</label>
+                <input type="text" placeholder="e.g. 2nd Year" required style="width:100%; padding:14px; border:none; border-radius:8px; background:#fff5eb; margin-bottom:18px;">
+
+                <button type="submit" style="width:100%; padding:15px; font-size:20px; border:none; border-radius:10px; background:#283b8a; color:white; cursor:pointer;">Apply for Hostel</button>
+            </form>
+        </div>
+
     </div>
 
-    <div class="hostel-card">
-      <h2>Lidder Girls Hostel</h2>
-      <p><strong>Type:</strong> Girls Hostel</p>
-      <p><strong>Location:</strong> North Campus</p>
-      <p><strong>Capacity:</strong> 200 Students</p>
-      <p><strong>Warden:</strong> Ms. S. Khan</p>
-      <p><strong>Contact:</strong> +91-9811112233</p>
-      <p><strong>Facilities:</strong> Wi-Fi, Security 24x7, Common Room, Gym</p>
-    </div>
-
-    <div class="hostel-card">
-      <h2>Sindh Co-ed PG</h2>
-      <p><strong>Type:</strong> Paid Guest</p>
-      <p><strong>Location:</strong> Delina</p>
-      <p><strong>Capacity:</strong> 20 Students</p>
-      <p><strong>Warden:</strong> Dr. R. Bhat</p>
-      <p><strong>Contact:</strong> +91-9898989898</p>
-      <p><strong>Facilities:</strong> Wi-Fi, AC Rooms, Cafeteria, Power Backup</p>
-    </div>
-
-    <div class="hostel-card">
-      <h2>Delize Boys Hostel</h2>
-      <p><strong>Type:</strong> Boys Hostel</p>
-      <p><strong>Location:</strong> Baramulla</p>
-      <p><strong>Capacity:</strong> 220 Students</p>
-      <p><strong>Warden:</strong> Mr. R. Ahmed</p>
-      <p><strong>Contact:</strong> +91-9765432188</p>
-      <p><strong>Facilities:</strong> Wi-Fi, Mess, Gym, Indoor Games</p>
-    </div>
-
-  </div>
-</div>
-{% endblock %}
+</body>
+</html>

@@ -1,57 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scholarship Registration</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom right, #2e3b77, #8796c0);
+            display: block;
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 90%;
+            width: 1100px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(6px);
+            border-radius: 15px;
+            padding: 35px 50px 50px;
+            color: #3a2b1c;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .top-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 20px;
+            color: #f5f0e8;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            font-size: 17px;
+            border: none;
+            border-radius: 8px;
+            background: #fff5eb;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            gap: 40px;
+        }
+
+        .row > div {
+            flex: 1;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            width: 45%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            background: #283b8a;
+        }
+
+        button:hover {
+            background: #1f2f6b;
+        }
+    </style>
 </head>
 <body>
     {% include 'includes/navigation.html' %}
-    <h1>All Students</h1>
+    <hr style="width:90%; margin:auto; margin-bottom:30px; border:1px solid rgba(255,255,255,0.6);">
+        <div class="container" style="margin:auto;">
+        <h1>Scholarship Application</h1>
+        <div class="top-text">Fill out the scholarship form below with accurate information to apply for financial assistance.</div>
 
-<form method="GET">
-  <input type="text" name="search" placeholder="Search by name" value="{{ search }}">
-  
-  <select name="dept">
-    <option value="">All Departments</option>
-    <option value="Computer Science">Computer Science</option>
-    <option value="Botany">Botany</option>
-    <option value="English">English</option>
-    <option value="MBA">MBA</option>
-    <option value="Others">Others</option>
-  </select>
+        <form>
+            <div class="row">
+                <div>
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter full name" required>
+                </div>
+                <div>
+                    <label>Date of Birth</label>
+                    <input type="date" required>
+                </div>
+            </div>
 
-  <button type="submit">Filter</button>
-</form>
+            <div class="row">
+                <div>
+                    <label>Department</label>
+                    <select required>
+                        <option value="">Select Department</option>
+                        <option>B.Tech</option>
+                        <option>Botany</option>
+                        <option>English</option>
+                        <option>MCA</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Year / Semester</label>
+                    <input type="text" placeholder="E.g. 2nd Year" required>
+                </div>
+            </div>
 
-<br>
+            <label>Address</label>
+            <textarea placeholder="Enter your full address"></textarea>
 
-<table border="1" cellpadding="10">
-  <tr>
-    <th>Name</th>
-    <th>Roll No</th>
-    <th>Department</th>
-    <th>Course</th>
-    <th>Actions</th>
-  </tr>
+            <div class="row">
+                <div>
+                    <label>Family Annual Income</label>
+                    <input type="number" placeholder="In INR" required>
+                </div>
+                <div>
+                    <label>Category</label>
+                    <select required>
+                        <option>General</option>
+                        <option>EWS</option>
+                        <option>OBC</option>
+                        <option>SC</option>
+                        <option>ST</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
 
-  {% for s in students %}
-  <tr>
-    <td>{{ s.fullname }}</td>
-    <td>{{ s.rollno }}</td>
-    <td>{{ s.department }}</td>
-    <td>{{ s.course }}</td>
-    <td>
-      <a href="{{ url_for('students.student_profile', id=s.id) }}">Profile</a> |
-      <a href="{{ url_for('students.edit_student', id=s.id) }}">Edit</a> |
-      <a href="{{ url_for('students.delete_student', id=s.id) }}"
-         onclick="return confirm('Are you sure you want to delete this student?');">
-         Delete
-      </a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+            <label>Reason for Applying (Optional)</label>
+            <textarea placeholder="Write your reason..."></textarea>
 
+            <div class="buttons">
+                <button type="submit">Apply Now</button>
+                <button type="button">Back to Home</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
