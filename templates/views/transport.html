@@ -1,174 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transport Services</title>
 
-{% extends "includes/navigation.html" %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='transport.css') }}"
+    />
+  </head>
+  <body>
+    {% include 'includes/navigation.html' %}
 
-{# Provide fallback transport data when the view doesn't pass `transports` #}
-{% if transports is not defined %}
-	{% set transports = [
-		{
-			'name': 'North Campus Express',
-			'number': 'JK01AB 6862',
-			'route': 'Nowgam ⇄ North Campus',
-            'driver': 'Mr Showkat Pandit',
-			'contact': '+91-9000000001',
-			'fare': '₹3000'
-		},
-		{
-			'name': 'North Campus Tortoise',
-            'number': 'JK01BC 3874',
-			'route': 'Ganderbal ⇄ North Campus',
-            'driver': 'Mr Farooq Ahmed',
-			'contact': '+91-9000000002',
-			'fare': '₹3000'
-		},
-		{
-			'name': 'North Campus Quicker',
-            'number': 'JK01BC 3853',
-			'route': 'Sopore ⇄ North Campus',
-            'driver': 'Mr Hilal Lone',
-			'contact': '+91-9000000003',
-			'fare': ' ₹3000 '
-		}
-	] %}
-{% endif %}
+    <h1 class="page-title">Transport Services</h1>
 
-{% block content %}
-<div class="container">
-	<h1>Transport Services</h1>
+    <div class="transport-grid">
+      <!-- Bus 1 -->
+      <div class="transport-card">
+        <div class="card-content">
+          <h2>North Campus Express</h2>
+          <p><strong>Bus Number:</strong> JK01AB 6862</p>
+          <p><strong>Route:</strong> Nowgam ⇄ North Campus</p>
+          <p><strong>Driver:</strong> Mr Showkat Pandit</p>
+          <p><strong>Contact:</strong> +91-9000000001</p>
+          <p><strong>Fare:</strong> ₹3000</p>
+        </div>
+        <div class="bus-icon">🚌</div>
+      </div>
 
-	<div class="transport-grid">
-		{% for t in transports %}
-		<div class="transport-card">
-			<h2>{{ t.name }}</h2>
-			<p><strong>Number:</strong> {{ t.number }}</p>
-			<p><strong>Route:</strong> {{ t.route }}</p>
-			<p><strong>Driver:</strong> {{ t.driver }}</p>
-			<p><strong>Contact:</strong> {{ t.contact }}</p>
-			<p><strong>Fare:</strong> {{ t.fare }}</p>
-			<a href="/transport/apply/{{ loop.index0 }}" class="btn-apply-transport">Apply for Service</a>
-		</div>
-		{% endfor %}
-	</div>
-</div>
-{% endblock %}
+      <!-- Bus 2 -->
+      <div class="transport-card">
+        <div class="card-content">
+          <h2>North Campus Tortoise</h2>
+          <p><strong>Bus Number:</strong> JK01BC 3874</p>
+          <p><strong>Route:</strong> Ganderbal ⇄ North Campus</p>
+          <p><strong>Driver:</strong> Mr Farooq Ahmed</p>
+          <p><strong>Contact:</strong> +91-9000000002</p>
+          <p><strong>Fare:</strong> ₹3000</p>
+        </div>
+        <div class="bus-icon">🚌</div>
+      </div>
 
-<style>
-	/* Transport card styling */
-	.modal {
-		display: none;
-		position: fixed;
-		z-index: 1000;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
-	}
+      <!-- Bus 3 -->
+      <div class="transport-card">
+        <div class="card-content">
+          <h2>North Campus Quicker</h2>
+          <p><strong>Bus Number:</strong> JK01BC 3853</p>
+          <p><strong>Route:</strong> Sopore ⇄ North Campus</p>
+          <p><strong>Driver:</strong> Mr Hilal Lone</p>
+          <p><strong>Contact:</strong> +91-9000000003</p>
+          <p><strong>Fare:</strong> ₹3000</p>
+        </div>
+        <div class="bus-icon">🚌</div>
+      </div>
 
-	.modal-content {
-		background-color: #fff;
-		margin: 5% auto;
-		padding: 30px;
-		border-radius: 10px;
-		width: 90%;
-		max-width: 500px;
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-	}
+      <div class="transport-card">
+        <div class="card-content">
+          <h2>The Crawling Cruiser</h2>
+          <p><strong>Bus Number:</strong> 2924</p>
+          <p><strong>Route:</strong> Sopore ⇄ North Campus</p>
+          <p><strong>Driver:</strong> Mr Ajaz Ahmad</p>
+          <p><strong>Contact:</strong> +91-9000000003</p>
+          <p><strong>Fare:</strong> ₹3000</p>
+        </div>
+        <div class="bus-icon">🚌</div>
+      </div>
 
-	.modal-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 20px;
-	}
+      <div class="transport-card">
+        <div class="card-content">
+          <h2>North Campus Daydream</h2>
+          <p><strong>Bus Number:</strong> JK01BC 3771</p>
+          <p><strong>Route:</strong> Sopore ⇄ North Campus</p>
+          <p><strong>Driver:</strong> Mr Tariq</p>
+          <p><strong>Contact:</strong> +91-9000000003</p>
+          <p><strong>Fare:</strong> ₹3000</p>
+        </div>
+        <div class="bus-icon">🚌</div>
+      </div>
 
-	.modal-header h2 {
-		margin: 0;
-		color: #0b4a8b;
-	}
-
-	.close-btn {
-		font-size: 28px;
-		font-weight: bold;
-		color: #999;
-		cursor: pointer;
-		border: none;
-		background: none;
-		padding: 0;
-	}
-
-	.close-btn:hover {
-		color: #000;
-	}
-
-	.form-group {
-		margin-bottom: 15px;
-	}
-
-	.form-group label {
-		display: block;
-		margin-bottom: 5px;
-		font-weight: 600;
-		color: #333;
-	}
-
-	.form-group input,
-	.form-group select {
-		width: 100%;
-		padding: 10px;
-		border: 1px solid #ddd;
-		border-radius: 5px;
-		font-size: 14px;
-		font-family: inherit;
-		box-sizing: border-box;
-	}
-
-	.form-group input:focus,
-	.form-group select:focus {
-		outline: none;
-		border-color: #0b4a8b;
-		box-shadow: 0 0 5px rgba(11, 74, 139, 0.3);
-	}
-
-	.form-actions {
-		display: flex;
-		gap: 10px;
-		justify-content: flex-end;
-		margin-top: 20px;
-	}
-
-	.btn {
-		padding: 10px 20px;
-		border: none;
-		border-radius: 5px;
-		cursor: pointer;
-		font-size: 14px;
-		font-weight: 600;
-		transition: background-color 0.2s;
-	}
-
-	.btn-apply-transport {
-		background-color: #0b4a8b;
-		color: white;
-		padding: 10px 15px;
-		border: none;
-		border-radius: 5px;
-		cursor: pointer;
-		font-weight: 600;
-		margin-top: 10px;
-		width: 100%;
-		transition: background-color 0.2s;
-	}
-
-	.btn-apply-transport:hover {
-		background-color: #093a6f;
-	}
-
-	.btn-apply {
-		background-color: #0b4a8b;
-		color: white;
-	}
-
-	.btn-apply-transport:hover {
-		background-color: #093a6f;
-	}
-</style>
+      <div class="transport-card">
+        <div class="card-content">
+          <h2>North Campus Daydream</h2>
+          <p><strong>Bus Number:</strong> JK01BC 3771</p>
+          <p><strong>Route:</strong> Sopore ⇄ North Campus</p>
+          <p><strong>Driver:</strong> Mr Tariq</p>
+          <p><strong>Contact:</strong> +91-9000000003</p>
+          <p><strong>Fare:</strong> ₹3000</p>
+        </div>
+        <div class="bus-icon">🚌</div>
+      </div>
+    </div>
+    <div class="apply-section">
+      <a href="https://sas.uok.edu.in/" class="apply-btn"
+        >Apply for Transport Service</a
+      >
+    </div>
+  </body>
+</html>

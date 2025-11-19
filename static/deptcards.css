@@ -1,0 +1,101 @@
+body {
+    background: #dff4ff;
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+}
+
+/* Title */
+.page-title {
+    text-align: center;
+    margin: 40px 0 30px 0;
+    font-size: 36px;
+    font-weight: 800;
+    color: #333;
+}
+
+/* Grid: FORCE 2 ITEMS PER ROW ON LARGE SCREENS */
+.card-grid {
+    width: 88%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    gap: 40px;
+}
+
+/* Card styling */
+.dept-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+
+    height: 230px; /* BIG cards */
+    text-decoration: none;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+    transition: all 0.25s ease;
+}
+
+.dept-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* Left text */
+.card-left {
+    max-width: 60%;
+}
+
+.card-left h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 700;
+}
+
+.card-left p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.know-more {
+    font-size: 15px;
+    color: #ff3366;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+/* Right image */
+.card-right img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+
+/* RESPONSIVE — stack in 1 column on small screens */
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: 1fr; /* 1 per row */
+        gap: 25px;
+    }
+
+    .dept-card {
+        height: auto;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-left {
+        max-width: 100%;
+    }
+
+    .card-right img {
+        margin-top: 20px;
+    }
+}
