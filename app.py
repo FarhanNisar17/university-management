@@ -2,6 +2,7 @@ from util.database import create_app, setup_database
 from routes.students import students_bp
 from flask import render_template
 
+
 app = create_app()
 setup_database(app)
 
@@ -14,7 +15,7 @@ from models.students import Student
 from routes.students import students_bp
 from routes.departments import department_bp
 from routes.scholarships import scholarship_bp
-from routes.thirdsem import thirdsem_bp
+
 
 
 # ------------------ HOME PAGE ------------------
@@ -26,9 +27,6 @@ def home():
 app.register_blueprint(students_bp)
 app.register_blueprint(department_bp)
 app.register_blueprint(scholarship_bp)
-
-app.register_blueprint(thirdsem_bp)
-
 
 
 # ------------------ RUN APP ------------------

@@ -21,7 +21,6 @@ def setup_database(app):
     # Import models AFTER init_app
     from models.students import Student
     # Ensure third sem model is imported so its table is created
-    from models.thirdsem import ThirdSemStudent
 
     with app.app_context():
         db.create_all()
