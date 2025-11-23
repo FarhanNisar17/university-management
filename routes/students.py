@@ -97,8 +97,6 @@ def register():
         return redirect(url_for('students.student_departments'))
 
 
-        
-
     return render_template('views/students/register.html')
 
 
@@ -130,8 +128,7 @@ def edit_student(id):
 
         db.session.commit()
         flash("Student updated!", "success")
-        return redirect(url_for('students.list_students'))
-
+        return redirect(url_for('students.student_departments'))
 
     return render_template('views/students/edit.html', student=student)
 
@@ -147,5 +144,6 @@ def delete_student(id):
     db.session.commit()
     
     flash("Student deleted!", "info")
-    return redirect(url_for('students.list_students'))
+    return redirect(url_for('students.student_departments'))
+
 

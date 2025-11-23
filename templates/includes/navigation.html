@@ -8,10 +8,14 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
   </head>
   <body>
     <header class="header">
-      <a href="#"
+      <a href="/"
         ><img
           src="{{ url_for('static', filename='images/logo.jpg') }}"
           alt="Logo"
@@ -30,7 +34,7 @@
 
           <li>
             <a
-              class="main-nav-link {{ 'active' if request.path == '/students' else '' }}"
+              class="main-nav-link {{ 'active' if request.path == '/students/' else '' }}"
               href="/students"
               >All Students</a
             >

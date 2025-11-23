@@ -1,6 +1,7 @@
 from util.database import create_app, setup_database
 from routes.students import students_bp
 from flask import render_template
+from util.extensions import db
 
 app = create_app()
 setup_database(app)
@@ -19,9 +20,27 @@ from routes.contact import contact_bp
 from routes.scholarships import scholarship_bp
 
 # ------------------ HOME PAGE ------------------
+ 
 @app.route('/')
 def home():
-    return render_template('views/home.html')
+
+    total_students = Student.query.count()
+
+    # If you don't have a departments table,
+    # you can count unique departments directly from Student table:
+    total_departments = db.session.query(Student.department).distinct().count()
+
+    # Static sample data (modify later if needed)
+    total_hostel_residents = 350
+    total_buses = 6
+
+    return render_template(
+        'views/home.html',
+        total_students=total_students,
+        total_departments=total_departments,
+        total_hostel_residents=total_hostel_residents,
+        total_buses=total_buses
+    )
 
 # Register blueprints
 app.register_blueprint(students_bp)

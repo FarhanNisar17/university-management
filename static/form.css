@@ -1,192 +1,212 @@
+
+
+
+/* ========================= */
+/* GENERAL CONTAINER */
+/* ========================= */
+
 .container-2 {
-  max-width: 90rem;
-  padding: 3rem 3.2rem 0 3.2rem;
-  margin: 2rem auto;
+  max-width: 85rem;
+  padding: 3rem 3rem 0 3rem;
+  margin: 3rem auto;
 }
+
+/* ========================= */
+/* Heading */
+/* ========================= */
 
 .heading-secondary {
   font-weight: 700;
-  color: #333;
+  color: #fff;
   letter-spacing: -0.5px;
-  font-size: 4.4rem;
+  font-size: 3.8rem;
   line-height: 1.2;
-  margin-bottom: 9.6rem;
+  margin-bottom: 5rem;
   text-align: center;
+  position: relative;
 }
 
-.btn {
-  display: inline-block;
-  text-decoration: none;
-  padding: 1.6rem 3.2rem;
-  font-size: 2rem;
-  border-radius: 7px;
-  transition: all 0.3s;
-
-  /* only necessary for .btn */
-  border: none;
-  cursor: pointer;
+.heading-secondary::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #364283;
+  margin: 1rem auto 0;
+  border-radius: 2px;
 }
 
-.btn--form {
-  background-color: #643811;
-  color: #fdf2e9;
-  align-self: end;
-  padding: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn--form:hover {
-  background-color: #fff;
-  color: #555;
-}
-
-*:focus {
-  outline: none;
-  /* outline: 4px dotted #fff; */
-  outline-offset: 4px;
-  box-shadow: 0 0 0 0.6rem rgba(235, 230, 227, 0.5);
-  border-radius: 5px;
-}
-
-/* ------------------------------- */
+/* ========================= */
+/* Card Form */
+/* ========================= */
 
 .form {
   display: grid;
   grid-template-columns: 1fr;
-  box-shadow: 0 3.2rem 6rem rgba(0, 0, 0, 0.15);
-  border-radius: 11px;
-  overflow: hidden;
+  background: linear-gradient(135deg, #414f97, #5d6bb6c5);
+  padding: 3.5rem 3rem;
+  border-radius: 18px;
+  transform: translateY(0);
+  transition: all 0.3s;
+
+  /* Soft, modern shadow */
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
 }
 
-/* Registration Theme */
-.form-register .form {
-  background-image: linear-gradient(to right bottom, #364283, #363e6e3f);
-}
-
-.form-register .btn--form {
-  background-color: #364283;
-}
-.form-register .btn--form:hover {
-  background-color: #fff;
-  color: #364283;
-}
-
-/* Edit Theme */
-.form-edit .form {
-  background-image: linear-gradient(to right bottom, #2a9d8f, #84dcc6);
-}
-
-.form-edit .btn--form {
-  background-color: #2a9d8f;
-}
-.form-edit .btn--form:hover {
-  background-color: #fff;
-  color: #2a9d8f;
-}
-
-.form-text-box {
-  padding: 2.8rem 3.4rem 3.4rem 3.4rem;
-  color: #45260a;
-}
-
-.form .heading-secondary {
-  color: inherit;
-  margin-bottom: 3.2rem;
-}
-.form-text {
-  font-size: 1.8rem;
-  line-height: 1.8;
-  margin-bottom: 4.8rem;
-}
+/* ========================= */
+/* FORM GRID */
+/* ========================= */
 
 .form-box {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 3.2rem;
-  row-gap: 2.4rem;
+  column-gap: 3rem;
+  row-gap: 2.6rem;
 }
+
+/* ========================= */
+/* LABELS */
+/* ========================= */
 
 .form-box label {
   display: block;
   font-size: 1.6rem;
-  font-weight: 500;
-  margin-bottom: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #222;
 }
+
+/* ========================= */
+/* INPUTS */
+/* ========================= */
 
 .form-box input,
 .form-box select {
   font-size: 1.8rem;
   width: 100%;
-  padding: 1.2rem;
+  padding: 1.3rem;
   font-family: inherit;
-  color: inherit;
-  border: none;
-  background-color: #fdf2e9;
-  border-radius: 9px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
 }
 
-/* Gender field layout */
+.form-box input:focus,
+.form-box select:focus {
+  border-color: #3b4fa5;
+  box-shadow: 0 0 0 4px rgba(89, 112, 216, 0.25);
+}
+
+.form:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+/* ========================= */
+/* GENDER SECTION */
+/* ========================= */
+
 .gender-group {
-  margin-bottom: 2rem;
+  grid-column: span 2;
+  margin-top: 1rem;
 }
 
 .gender-group > label {
   display: block;
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .gender-options {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-/* Make radios and labels inline, soft, and clickable */
+/* gender pills */
 .gender-options label {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background-color: #fdf2e9;
-  padding: 0.6rem 1.2rem;
+  background: #fff;
+  padding: 0.7rem 1.4rem;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.3s;
   font-size: 1.6rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* Hide default radio and make custom circle */
-.gender-options input[type="radio"] {
-  width: 15px;
-  height: 15px;
-  border: 2px solid #b05c2e;
-  border-radius: 50%;
-  background-color: white;
-  cursor: pointer;
-  position: relative;
+  border: 1px solid #ccc;
   transition: all 0.2s ease;
 }
 
-/* Hover and active effects */
 .gender-options label:hover {
-  background-color: #fae5d3;
-  transform: translateY(-1px);
+  background: #eef1ff;
+  border-color: #3a4aa8;
 }
 
-.from-box input::placeholder {
-  color: #aaa;
+/* hide default radio */
+.gender-options input[type="radio"] {
+  display: none;
 }
 
-.form *:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.8rem rgba(254, 240, 230, 0.5);
+/* selected state */
+.gender-options input[type="radio"]:checked + span {
+  background: #3a4aa8;
+  color: #fff;
+  padding: 0.5rem 1.1rem;
+  border-radius: 20px;
+  transition: all 0.2s ease;
 }
 
-/* EDIT PAGE */
-.gender-group-edit {
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+.btn--form {
+  background-color: #3a4aa8;
+  color: #fff;
+  border-radius: 12px;
+  padding: 1.3rem;
+  font-size: 2rem;
+
   grid-column: span 2;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.3s ease;
+}
+
+.btn--form:hover {
+  background: #fff;
+  color: #3a4aa8;
+  border: 2px solid #3a4aa8;
+}
+
+/* Edit form: slightly darker background */
+.form-edit .form {
+  background-image: linear-gradient(to right bottom, #356579, #2e3e7a);
+}
+
+.edit-form{
+  background-color: #356579;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .form-box {
+    grid-template-columns: 1fr;
+  }
+
+  .gender-group {
+    grid-column: span 1;
+  }
+
+  .heading-secondary {
+    font-size: 3rem;
+  }
 }
