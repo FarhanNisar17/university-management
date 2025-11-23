@@ -1,0 +1,52 @@
+{% include 'includes/navigation.html' %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='scholarships_submissions.css') }}"
+/>
+
+<div class="submissions-container">
+  <h1>Scholarship Applications</h1>
+
+  {% if applications %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Scholarship</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Reason</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for app in applications %}
+      <tr>
+        <td>{{ app.id }}</td>
+        <td>{{ app.scholarship_name }}</td>
+        <td>{{ app.fullname }}</td>
+        <td>{{ app.email }}</td>
+        <td>{{ app.phone }}</td>
+        <td class="reason">{{ app.reason }}</td>
+
+        <td>
+          <a
+            href="/scholarships/delete/{{ app.id }}"
+            class="btn-delete"
+            onclick="return confirm('Delete this submission?')"
+          >
+            Delete
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+  <p class="empty">No applications submitted yet.</p>
+  {% endif %}
+</div>

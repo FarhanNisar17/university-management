@@ -1,0 +1,53 @@
+.apply-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.apply-container h1 {
+  text-align: center;
+  color: #0b4a8b;
+  margin-bottom: 30px;
+}
+
+.apply-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.apply-form label {
+  font-weight: 600;
+  margin-top: 15px;
+  display: block;
+}
+
+.apply-form input,
+.apply-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.btn-submit {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: #0b4a8b;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-cancel {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+  color: #555;
+  text-decoration: none;
+}

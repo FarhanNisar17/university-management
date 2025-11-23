@@ -21,25 +21,67 @@
       <nav class="main-nav">
         <ul class="main-nav-list">
           <li>
-            <a class="main-nav-link" class="main-nav-link" href="/">Home</a>
-          </li>
-          <li><a class="main-nav-link" href="/students">All Students</a></li>
-          <li>
-            <a class="main-nav-link" href="/students/register"
-              >Register Student</a
+            <a
+              class="main-nav-link {{ 'active' if request.path == '/' else '' }}"
+              href="/"
+              >Home</a
             >
-          </li>
-          <li><a class="main-nav-link" href="/departments">Departments</a></li>
-          <li>
-            <a class="main-nav-link" href="/scholarships">Scholarships</a>
-          </li>
-          <li><a class="main-nav-link" href="/hostels">Hostels</a></li>
-          <li>
-            <a class="main-nav-link" href="/transport">Transport Service</a>
           </li>
 
           <li>
-            <a class="main-nav-link" href="/contacts">Contact Us</a>
+            <a
+              class="main-nav-link {{ 'active' if request.path == '/students' else '' }}"
+              href="/students"
+              >All Students</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="main-nav-link {{ 'active' if request.path == '/students/register' else '' }}"
+              href="/students/register"
+              >Register Student</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="main-nav-link {{ 'active' if request.path.startswith('/departments') else '' }}"
+              href="/departments"
+              >Departments</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="main-nav-link {{ 'active' if request.path.startswith('/scholarships') else '' }}"
+              href="/scholarships"
+              >Scholarships</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="main-nav-link {{ 'active' if request.path.startswith('/hostels') else '' }}"
+              href="/hostels"
+              >Hostels</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="main-nav-link {{ 'active' if request.path.startswith('/transport') else '' }}"
+              href="/transport"
+              >Transport Service</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="main-nav-link {{ 'active' if request.path.startswith('/contact') else '' }}"
+              href="/contacts"
+              >Contact Us</a
+            >
           </li>
         </ul>
       </nav>

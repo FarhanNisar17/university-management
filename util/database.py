@@ -20,6 +20,7 @@ def create_app():
 def setup_database(app):
     # Import models AFTER init_app
     from models.students import Student
+    from models.scholarship import ScholarshipApplication
 
     with app.app_context():
         db.create_all()

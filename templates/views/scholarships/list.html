@@ -1,0 +1,33 @@
+{% include 'includes/navigation.html' %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='scholarships.css') }}"
+/>
+
+<div class="scholarships-container">
+  <h1 class="title">Scholarships</h1>
+
+  <div class="grid">
+    {% for s in scholarships %}
+    <div class="scholarship-card">
+      <h2>{{ s.name }}</h2>
+      <p class="desc">{{ s.desc }}</p>
+
+      <div class="meta">
+        <strong>Eligibility:</strong> {{ s.eligibility }}<br />
+        <strong>Deadline:</strong> {{ s.deadline }}
+      </div>
+
+      <a href="/scholarships/apply/{{ loop.index0 }}" class="apply-btn"
+        >Apply Now</a
+      >
+    </div>
+    {% endfor %}
+  </div>
+  <div style="text-align: center; margin-bottom: 20px">
+    <a href="/scholarships/submissions" class="manage-btn"
+      >View All Applications</a
+    >
+  </div>
+</div>
