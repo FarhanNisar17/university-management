@@ -57,3 +57,22 @@ def delete_application(id):
 
     flash("Application deleted!", "info")
     return redirect(url_for("hostels.view_applications"))
+
+
+# APPROVE APPLICATION
+@hostel_bp.route("/approve/<int:id>")
+def approve_application(id):
+    app = HostelApplication.query.get_or_404(id)
+    app.status = "Approved"
+    db.session.commit()
+    flash("Application Approved!", "success")
+    return redirect(url_for("hostels.view_applications"))
+
+# REJECT APPLICATION
+@hostel_bp.route("/reject/<int:id>")
+def reject_application(id):
+    app = HostelApplication.query.get_or_404(id)
+    app.status = "Rejected"
+    db.session.commit()
+    flash("Application Rejected!", "info")
+    return redirect(url_for("hostels.view_applications"))

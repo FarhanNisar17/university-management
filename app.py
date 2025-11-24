@@ -30,7 +30,8 @@ def home():
     total_departments = db.session.query(Student.department).distinct().count()
 
     # Static sample data (modify later if needed)
-    total_hostel_residents = 350
+    from models.hostel import HostelApplication
+    total_hostel_residents = HostelApplication.query.filter_by(status="Approved").count()
     total_buses = 6
 
     return render_template(
