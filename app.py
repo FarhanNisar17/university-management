@@ -3,7 +3,7 @@ from routes.students import students_bp
 from flask import render_template
 from util.extensions import db
 
-app = create_app()
+app = create_app()          #flask instance 
 setup_database(app)
 
 # Import models AFTER db.init_app
@@ -26,7 +26,6 @@ def home():
 
     total_students = Student.query.count()
 
-    # If you don't have a departments table,
     # you can count unique departments directly from Student table:
     total_departments = db.session.query(Student.department).distinct().count()
 
@@ -50,6 +49,6 @@ app.register_blueprint(transport_bp)
 app.register_blueprint(contact_bp)
 app.register_blueprint(scholarship_bp)
 
-# ------------------ RUN APP ------------------
-if __name__ == '__main__':
+# -------- RUN APP ------ -
+if __name__ == '__main__':      #run if this file gets executed 
     app.run(debug=True)

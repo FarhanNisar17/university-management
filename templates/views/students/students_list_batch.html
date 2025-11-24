@@ -13,6 +13,49 @@
 
     <h1 class="title">{{ dept }} - Batch {{ year }}</h1>
 
+    {# <div class="sort-box">
+      <label>Sort by:</label>
+      <select class="sort-select">
+        <option value="0">Name</option>
+        <option value="1">Roll No</option>
+        <option value="2">DOB</option>
+        <option value="3">Address</option>
+        <option value="4">Category</option>
+        <option value="5">Department</option>
+        <option value="6">Course</option>
+        <option value="7">Year</option>
+        <option value="8">Gender</option>
+      </select>
+    </div>
+
+    <tr>
+      <th>Name</th>
+      <th>Roll No</th>
+      <th>DOB</th>
+      <th>Address</th>
+      <th>Category</th>
+      <th>Department</th>
+      <th>Course</th>
+      <th>Year</th>
+      <th>Gender</th>
+      <th>Actions</th>
+    </tr>
+
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.fullname }}</td>
+        <td>{{ s.rollno }}</td>
+        <td>{{ s.dob }}</td>
+        <td>{{ s.address }}</td>
+        <td>{{ s.category }}</td>
+        <td>{{ s.department }}</td>
+        <td>{{ s.course }}</td>
+        <td>{{ s.admission_year }}</td>
+        <td>{{ s.gender }}</td>
+      </tr>
+    </tbody> #}
+
     <table>
       <thead>
         <tr>

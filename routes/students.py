@@ -18,7 +18,7 @@ from sqlalchemy import func
 def generate_rollno(department, year):
     dept_code = DEPT_CODES.get(department, "GEN")
 
-    last_roll = db.session.query(Student.rollno).filter_by(
+    last_roll = db.session.query(Student.rollno).filter_by(     #SQL alchemy
         department=department,
         admission_year=year
     ).order_by(Student.rollno.desc()).first()
@@ -30,11 +30,11 @@ def generate_rollno(department, year):
     else:
         new_number = 1
 
-    return f"{dept_code}-{year}-{new_number:04d}"
+    return f"{dept_code}-{year}-{new_number:04d}"           # custom roll no
 
 
 # ------------------------------------------------------
-# 1. LIST ALL STUDENTS  (THIS ROUTE WAS MISSING)
+# 1. LIST ALL STUDENTS  
 # ------------------------------------------------------
 @students_bp.route('/')
 def student_departments():
