@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ dept }} Batches</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='departments.css') }}"
+    />
+  </head>
+
+  <body>
+    {% include 'includes/navigation.html' %}
+
+    <h1 class="title">{{ dept }} - Batches</h1>
+
+    <div class="grid-container">
+      {% for y in years %}
+      <a href="/students/{{ dept }}/{{ y }}" class="dept-card">
+        <div class="dept-icon">📅</div>
+        <h3>Batch {{ y }}</h3>
+      </a>
+      {% endfor %}
+    </div>
+  </body>
+</html>

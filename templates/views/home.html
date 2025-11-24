@@ -1,71 +1,151 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IIT Delina</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
 
-{% block title %}Home{% endblock %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
 
-{% block head_extra %}
-<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
-{% endblock %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+  </head>
+  <body>
+    {% include "/includes/navigation.html" %}
 
-{% block content %}
-   <section class="section-hero">
-     <div class="hero">
-       <div class="hero-text-box">
-         <h1 class="heading-primary">Welcome!</h1>
-         <p class="hero-description">Empowering Education for the Future
-           Manage students, departments, and academics — all in one place.</p>
+    <main>
+      <section class="section-hero">
+        <div class="hero">
+          <div class="hero-text-box">
+            <h1 class="heading-primary">Welcome!</h1>
+            <p class="hero-description">
+              Empowering Education for the Future Manage students, departments,
+              and academics — all in one place.
+            </p>
 
-         <a href="#" class="btn btn--full margin-right-sm">Register</a>
-         <a href="https://northcampus.uok.edu.in/" class="btn btn--outline btn--scroll">Learn More &dArr;</a>
-       </div>
-       <div class="hero-img-box">
-         <img src="{{ url_for('static', filename='images/ku.png') }}" alt="" class="hero-img" />
-       </div>
-     </div>
-   </section>
+            <a href="/students/register" class="btn btn--full margin-right-sm"
+              >Register</a
+            >
+            <a
+              href="https://northcampus.uok.edu.in/"
+              class="btn btn--outline btn--scroll"
+              >Learn More &dArr;</a
+            >
+          </div>
+          <div class="hero-img-box">
+            <img
+              src="{{ url_for('static', filename='images/ku.png') }}"
+              alt=""
+              class="hero-img"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
 
-   <section class="section-dashboard">
-     <div class="container">
-       <div class="grid grid--3-cols">
-         <div class="dash-box">
-           <a href="/students/" class="nav-card">
-             <h3>👨‍🎓 Students</h3>
-             <p>View and manage all student records.</p>
-           </a>
-         </div>
-         <div class="dash-box">
-           <a href="/students/register" class="nav-card">
-             <h3>➕ Register Student</h3>
-             <p>Add a new student to the system.</p>
-           </a>
-         </div>
-         <div class="dash-box">
-           <a href="/departments" class="nav-card">
-             <h3>🏫 Departments</h3>
-             <p>Browse departments and courses.</p>
-           </a>
-         </div>
-         <div class="dash-box">
-           <a href="/courses" class="nav-card">
-             <h3>📚 Courses</h3>
-             <p>Explore course offerings.</p>
-           </a>
-         </div>
-         <div class="dash-box">
-           <a href="/hostels" class="nav-card">
-             <h3>🏡 Hostels</h3>
-             <p>View hostel information and details.</p>
-           </a>
-         </div>
-         <div class="dash-box">
-           <a href="/transport" class="nav-card">
-             <h3>🚌 Transport</h3>
-             <p>Check transport service availability.</p>
-           </a>
-         </div>
-       </div>
-     </div>
-   </section>
+    <section class="section-dashboard">
+      <div class="home-container">
+        <h1 class="home-title">Welcome to the University Portal</h1>
+        <p class="home-subtitle">
+          Manage students, departments, hostels, transport and more — all in one
+          place.
+        </p>
 
-{% endblock %}
+        <div class="feature-grid">
+          <a href="/students" class="feature-card">
+            <div class="icon">👨‍🎓</div>
+            <h3>Students</h3>
+            <p>View and manage all student records.</p>
+          </a>
+
+          <a href="/students/register" class="feature-card">
+            <div class="icon">➕</div>
+            <h3>Register Student</h3>
+            <p>Add a new student to the system.</p>
+          </a>
+
+          <a href="/departments" class="feature-card">
+            <div class="icon">🏫</div>
+            <h3>Departments</h3>
+            <p>Browse departments and view courses.</p>
+          </a>
+
+          <a href="/courses" class="feature-card">
+            <div class="icon">📚</div>
+            <h3>Courses</h3>
+            <p>Explore course offerings.</p>
+          </a>
+
+          <a href="/hostels" class="feature-card">
+            <div class="icon">🏨</div>
+            <h3>Hostels</h3>
+            <p>View hostel information and details.</p>
+          </a>
+
+          <a href="/transport" class="feature-card">
+            <div class="icon">🚌</div>
+            <h3>Transport</h3>
+            <p>Check transport service availability.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+    <hr />
+
+    <section class="stats margin-top">
+      <h1 class="home-title" style="text-align: center">Stats Counter</h1>
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+          <h2>{{ total_students }}</h2>
+          <p>Total Students</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🏫</div>
+          <h2>{{ total_departments }}</h2>
+          <p>Departments</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🏨</div>
+          <h2>{{ total_hostel_residents }}</h2>
+          <p>Hostel Residents</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🚌</div>
+          <h2>{{ total_buses }}</h2>
+          <p>Transport Buses</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="margin-top">
+      <div class="about-split">
+        <div class="about-icon">📘</div>
+        <div class="about-text">
+          <h2>About the University System</h2>
+          <p>
+            The University Management System is designed to centralize all
+            campus operations—including student registration, department
+            management, hostel information, scholarship processing, and
+            transportation support. It enhances convenience for students and
+            reduces workload for staff by providing a simple, efficient, and
+            organized digital experience.
+          </p>
+        </div>
+      </div>
+    </section>
+    {% include "includes/footer.html" %}
+  </body>
+</html>

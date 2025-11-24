@@ -1,51 +1,80 @@
-{% extends "includes/navigation.html" %}
+{% include 'includes/navigation.html' %}
 
-{% block content %}
-<div class="container">
-  <h1>University Hostels</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='hostels.css') }}" />
 
-  <div class="hostel-grid">
+<div class="hostel-container">
+  <h1>Hostel Information</h1>
 
-    <div class="hostel-card">
-      <h2>Jhelum Boys Hostel</h2>
-      <p><strong>Type:</strong> Boys Hostel</p>
-      <p><strong>Location:</strong> North Campus</p>
-      <p><strong>Capacity:</strong> 240 Students</p>
-      <p><strong>Warden:</strong> Mr. A. Qureshi</p>
-      <p><strong>Contact:</strong> +91-9876543210</p>
-      <p><strong>Facilities:</strong> Wi-Fi, Mess, Laundry, Study Room</p>
-    </div>
+  <div class="hostel-notice">
+    Hostel registration is conducted <strong>offline only</strong>. Students
+    must visit the <strong>Hostel Office</strong> for room allotment.
+  </div>
 
-    <div class="hostel-card">
-      <h2>Lidder Girls Hostel</h2>
-      <p><strong>Type:</strong> Girls Hostel</p>
-      <p><strong>Location:</strong> North Campus</p>
-      <p><strong>Capacity:</strong> 200 Students</p>
-      <p><strong>Warden:</strong> Ms. S. Khan</p>
-      <p><strong>Contact:</strong> +91-9811112233</p>
-      <p><strong>Facilities:</strong> Wi-Fi, Security 24x7, Common Room, Gym</p>
-    </div>
+  <div class="hostel-card">
+    <h2>🏫 Boys Hostel – North Campus</h2>
+    <p><strong>Capacity:</strong> 120 Students</p>
+    <p><strong>Room Type:</strong> 2-Seater & 3-Seater Rooms</p>
+    <p><strong>Cost:</strong> ₹10,000 per year</p>
 
-    <div class="hostel-card">
-      <h2>Sindh Co-ed PG</h2>
-      <p><strong>Type:</strong> Paid Guest</p>
-      <p><strong>Location:</strong> Delina</p>
-      <p><strong>Capacity:</strong> 20 Students</p>
-      <p><strong>Warden:</strong> Dr. R. Bhat</p>
-      <p><strong>Contact:</strong> +91-9898989898</p>
-      <p><strong>Facilities:</strong> Wi-Fi, AC Rooms, Cafeteria, Power Backup</p>
-    </div>
+    <h3>Facilities</h3>
+    <ul>
+      <li>24/7 Security + CCTV</li>
+      <li>High-Speed WiFi</li>
+      <li>Attached Washrooms</li>
+      <li>Hot Water Facility</li>
+      <li>Mess with Veg/Non-Veg Menu</li>
+    </ul>
 
-    <div class="hostel-card">
-      <h2>Delize Boys Hostel</h2>
-      <p><strong>Type:</strong> Boys Hostel</p>
-      <p><strong>Location:</strong> Baramulla</p>
-      <p><strong>Capacity:</strong> 220 Students</p>
-      <p><strong>Warden:</strong> Mr. R. Ahmed</p>
-      <p><strong>Contact:</strong> +91-9765432188</p>
-      <p><strong>Facilities:</strong> Wi-Fi, Mess, Gym, Indoor Games</p>
-    </div>
+    <h3>Transport</h3>
+    <p>Free shuttle¬ service to main gate every 30 minutes.</p>
 
+    <h3>Warden Details</h3>
+    <p><strong>Warden:</strong> Mr. xyz</p>
+    <p><strong>Phone:</strong> +91-7788990011</p>
+  </div>
+
+  <div class="hostel-card">
+    <h2>🏫 Girls Hostel – North Campus</h2>
+    <p><strong>Capacity:</strong> 100 Students</p>
+    <p><strong>Room Type:</strong> 2-Seater Rooms</p>
+    <p><strong>Cost:</strong> ₹10,000 per semester </p>
+
+    <h3>Facilities</h3>
+    <ul>
+      <li>Female Security Staff</li>
+      <li>WiFi</li>
+      <li>Heaters in Winter</li>
+      <li>Clean Mess & Dining Hall</li>
+      <li>Laundry</li>
+    </ul>
+
+    <h3>Transport</h3>
+    <p>Dedicated morning and evening transport to main campus routes.</p>
+
+    <h3>Warden Details</h3>
+    <p><strong>Warden:</strong> Ms. abc</p>
+    <p><strong>Phone:</strong> +91-8899776655</p>
+  </div>
+
+  <div class="hostel-card">
+    <h2>🏫 Research Scholars PG Hostel</h2>
+    <p><strong>Capacity:</strong> 60 Scholars</p>
+    <p><strong>Room Type:</strong> Single Rooms</p>
+    <p><strong>Cost:</strong> ₹35,000 per semester</p>
+
+    <h3>Facilities</h3>
+    <ul>
+      <li>Quiet Study Environment</li>
+      <li>WiFi + Reading Hall</li>
+      <li>Separate Mess for Scholars</li>
+      <li>Library Access 24/7</li>
+    </ul>
+
+    <h3>Transport</h3>
+    <p>Priority transport to Research Block & Library.</p>
+
+    <h3>Warden Details</h3>
+    <p><strong>Warden:</strong> Dr. Hilal Lone</p>
+    <p><strong>Phone:</strong> +91-7006654433</p>
   </div>
 </div>
-{% endblock %}

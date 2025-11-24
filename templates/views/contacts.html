@@ -1,75 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
-    {% include 'includes/navigation.html' %}
 
-    <div class="container">
-      <h1>Contact &amp; Support</h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+</head>
 
-      <div class="hostel-grid">
+<body>
 
-        <div class="hostel-card">
-          <h2>Main University Office</h2>
-          <p><strong>Address:</strong> University Road, North Campus</p>
-          <p><strong>Phone:</strong> +91-111-222-3333</p>
-          <p><strong>Email:</strong> info@university.edu</p>
-          <p><strong>Office Hours:</strong> Mon - Fri: 09:00 - 17:00</p>
-        </div>
+{% include 'includes/navigation.html' %}
 
-        <div class="hostel-card">
-          <h2>Admissions Office</h2>
-          <p><strong>Phone:</strong> +91-111-222-3344</p>
-          <p><strong>Email:</strong> admissions@university.edu</p>
-          <p><strong>Enquiry Hours:</strong> Mon - Sat: 09:00 - 16:00</p>
-          <p><strong>Notes:</strong> For course-specific eligibility and application deadlines, please include your intended program in the subject line.</p>
-        </div>
+<div class="contact-container">
 
-        <div class="hostel-card">
-          <h2>Transport &amp; Logistics</h2>
-          <p><strong>General Transport Enquiries:</strong> +91-9000000001</p>
-          <p><strong>Bus Scheduling:</strong> transport@university.edu</p>
-          <p><strong>Lost &amp; Found:</strong> +91-9000000010 (Mon - Fri)</p>
-          <p><strong>Office:</strong> Campus Services Building, Ground Floor</p>
-        </div>
+    <h1>Contact Us</h1>
 
-        <div class="hostel-card">
-          <h2>Hostel &amp; Student Welfare</h2>
-          <p><strong>Phone:</strong> +91-111-222-3355</p>
-          <p><strong>Email:</strong> hostel@university.edu</p>
-          <p><strong>Emergency Warden (24/7):</strong> +91-99999-11111</p>
-          <p><strong>Complaints:</strong> Use the subject line "Hostel Complaint" for faster routing.</p>
-        </div>
+    <div class="contact-card">
 
-        <div class="hostel-card">
-          <h2>Security &amp; Emergency</h2>
-          <p><strong>Emergency (Campus):</strong> 112</p>
-          <p><strong>Campus Security (24/7):</strong> +91-111-222-4400</p>
-          <p><strong>Medical Centre:</strong> +91-111-222-4411 (Open 24/7)</p>
-          <p><strong>Fire &amp; Safety:</strong> +91-111-222-4422</p>
-        </div>
+        <div class="section-title">Campus Address</div>
+        <p>University of Kashmir — North Campus</p>
+        <p>Delina, Baramulla, Jammu & Kashmir, 193103</p>
+        <p><strong>Office Hours:</strong> Mon–Sat | 9:30 AM – 4:30 PM</p>
 
-        <div class="hostel-card">
-          <h2>Connect with Us</h2>
-          <p><strong>Website:</strong> <a href="https://www.university.edu">www.university.edu</a></p>
-          <p><strong>Facebook:</strong> <a href="#">facebook.com/ouruniversity</a></p>
-          <p><strong>Twitter:</strong> <a href="#">@ouruniversity</a></p>
-          <p><strong>LinkedIn:</strong> <a href="#">linkedin.com/school/ouruniversity</a></p>
-        </div>
+        <div class="section-title">General Inquiries</div>
+        <p><strong>Phone:</strong> +91-1234567890</p>
+        <p><strong>Email:</strong> info@university.edu</p>
+        <p><strong>Fax:</strong> +91-9876543210</p>
 
-      </div>
+        <div class="section-title">Admissions Office</div>
+        <p><strong>Phone:</strong> +91-7000000000</p>
+        <p><strong>Email:</strong> admissions@university.edu</p>
+        <p>Mon–Fri | 10 AM – 4 PM</p>
 
-      <div style="margin-top: 30px; text-align: center;">
-        <h3>Visiting &amp; Postal Address</h3>
-        <p>University Road, North Campus, YourCity, ZIP 123456</p>
-        <p>Postal enquiries: registrar@university.edu</p>
-      </div>
+        <div class="section-title">Exam Section</div>
+        <p><strong>Phone:</strong> +91-6000000001</p>
+        <p><strong>Email:</strong> exams@university.edu</p>
+        <p>Contact for marksheets, datesheets and queries.</p>
 
     </div>
-  </body>
+
+    <div class="map-container">
+      <h2>Find Us on the Map</h2>
+        <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.6572167468874!2d74.36347087589498!3d34.22656131331579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e23fb726f1d5ef%3A0x84ff1cd58b1f9a3!2sUniversity%20of%20Kashmir%20-%20North%20Campus!5e0!3m2!1sen!2sin!4v1705589987661">
+        </iframe>
+    </div>
+
+</div>
+
+</body>
 </html>

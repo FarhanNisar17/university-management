@@ -1,0 +1,27 @@
+{% include 'includes/navigation.html' %}
+
+<div class="apply-container">
+  <h1>Apply for {{ scholarship.name }}</h1>
+
+  <form method="POST" class="apply-form">
+    <label>Full Name</label>
+    <input type="text" name="fullname" required />
+
+    <label>Email</label>
+    <input type="email" name="email" required />
+
+    <label>Phone</label>
+    <input type="text" name="phone" required />
+
+    <label>Reason for applying</label>
+    <textarea name="reason" required rows="4"></textarea>
+
+    <button class="btn-submit">Submit Application</button>
+    <a class="btn-cancel" href="/scholarships">Cancel</a>
+  </form>
+</div>
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='scholarships_apply.css') }}"
+/>
