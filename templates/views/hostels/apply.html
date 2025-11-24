@@ -1,0 +1,40 @@
+{% include "includes/navigation.html" %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='hostel.css') }}">
+
+<div class="hostel-form-container">
+  <h2>🏨 Hostel Application Form</h2>
+
+  <form method="POST">
+
+    <label>Full Name</label>
+    <input type="text" name="fullname" required>
+
+    <label>Roll Number</label>
+    <input type="text" name="rollno" required>
+
+    <label>Gender</label>
+    <select name="gender" required>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
+    <label>Phone</label>
+    <input type="text" name="phone" required>
+
+    <label>Address</label>
+    <textarea name="address"></textarea>
+
+    <label>Reason for Hostel</label>
+    <textarea name="reason" required></textarea>
+
+    <button type="submit" class="hostel-btn">Submit Application</button>
+  </form>
+
+  <div class="hostel-btn-group">
+    <a class="hostel-btn-secondary" href="{{ url_for('hostels.hostel_info') }}">⬅ Back</a>
+    <a class="hostel-btn-secondary" href="{{ url_for('hostels.view_applications') }}">View Applications</a>
+  </div>
+</div>

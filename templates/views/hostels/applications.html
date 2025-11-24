@@ -1,0 +1,41 @@
+{% include "includes/navigation.html" %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='hostel.css') }}">
+
+<div class="hostel-container">
+  <h2>📄 Hostel Applications</h2>
+
+  <div class="hostel-btn-group">
+    <a class="hostel-btn" href="{{ url_for('hostels.apply_hostel') }}">Apply for Hostel</a>
+    <a class="hostel-btn-secondary" href="{{ url_for('hostels.hostel_info') }}">Back to Info</a>
+  </div>
+
+  <table class="hostel-table">
+    <tr>
+      <th>Name</th>
+      <th>Roll No</th>
+      <th>Phone</th>
+      <th>Gender</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+
+    {% for a in apps %}
+    <tr>
+      <td>{{ a.fullname }}</td>
+      <td>{{ a.rollno }}</td>
+      <td>{{ a.phone }}</td>
+      <td>{{ a.gender }}</td>
+      <td>
+        <span class="status-badge {{ a.status }}">{{ a.status }}</span>
+      </td>
+      <td>
+        <a href="{{ url_for('hostels.delete_application', id=a.id) }}" class="hostel-btn-danger">
+          Delete
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>

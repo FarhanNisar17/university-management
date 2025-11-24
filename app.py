@@ -15,9 +15,9 @@ from models.students import Student
 from routes.students import students_bp
 from routes.departments import department_bp
 from routes.transport import transport_bp
-from routes.hostels import hostel_bp
 from routes.contact import contact_bp
 from routes.scholarships import scholarship_bp
+from routes.hostel import hostel_bp
 
 # ------------------ HOME PAGE ------------------
  
@@ -44,10 +44,10 @@ def home():
 # Register blueprints
 app.register_blueprint(students_bp)
 app.register_blueprint(department_bp)
-app.register_blueprint(hostel_bp)
 app.register_blueprint(transport_bp)
 app.register_blueprint(contact_bp)
 app.register_blueprint(scholarship_bp)
+app.register_blueprint(hostel_bp)
 
 # -------- RUN APP ------ -
 if __name__ == '__main__':      #run if this file gets executed 

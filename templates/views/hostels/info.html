@@ -1,0 +1,33 @@
+{% include "includes/navigation.html" %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='hostel.css') }}">
+
+<div class="hostel-container">
+  <h1>🏨 University Hostel</h1>
+
+  <p style="text-align: center">
+    Safe accommodation with 24/7 security, mess, Wi-Fi, and study halls.
+  </p>
+
+  <h3>Facilities</h3>
+  <ul>
+    <li>🛏️ 3-Seater Rooms</li>
+    <li>🍽️ Mess Facility</li>
+    <li>📶 Wi-Fi</li>
+    <li>🚌 Transport to Campus</li>
+    <li>🔒 24/7 Security</li>
+  </ul>
+
+  <h3>Fees</h3>
+  <p style="text-align:center"><strong>₹ 10,000 / year</strong> </p>
+
+  <div class="hostel-btn-group">
+    <a class="hostel-btn" href="{{ url_for('hostels.apply_hostel') }}">
+      Apply for Hostel
+    </a>
+    <a class="hostel-btn-secondary" href="{{ url_for('hostels.view_applications') }}">
+      View Applications
+    </a>
+  </div>
+</div>
