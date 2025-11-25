@@ -27,7 +27,7 @@ def home():
     total_students = Student.query.count()
 
     # you can count unique departments directly from Student table:
-    total_departments = db.session.query(Student.department).distinct().count()
+    total_departments = db.session.query(Student.department).distinct().count()         # takes only department column
 
     # Static sample data (modify later if needed)
     from models.hostel import HostelApplication

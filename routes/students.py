@@ -71,7 +71,7 @@ def students_in_batch(dept, year):
 @students_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
-        department = request.form.get('department')
+        department = request.form.get('department')     #maps to form name parameter
         year = request.form.get('admission_year')
 
         rollno = generate_rollno(department, year)
@@ -103,8 +103,8 @@ def register():
 # ------------------------------------------------------
 # 3. STUDENT PROFILE
 # ------------------------------------------------------
-@students_bp.route('/profile/<int:id>')
-def student_profile(id):
+@students_bp.route('/profile/<int:id>')             #/students/profile/9
+def student_profile(id):                        #student_profile(9)
     student = Student.query.get_or_404(id)
     return render_template('views/students/profile.html', student=student)
 
@@ -116,8 +116,8 @@ def student_profile(id):
 def edit_student(id):
     student = Student.query.get_or_404(id)
 
-    if request.method == "POST":
-        student.fullname = request.form['fullname']
+    if request.method == "POST":                            #student.fullname = "Sameer"
+        student.fullname = request.form['fullname']         #student.fullname = "Sameer khan"
         student.dob = request.form['dob']
         student.address = request.form['address']
         student.category = request.form['category']
