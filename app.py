@@ -26,7 +26,7 @@ def home():
 
     total_students = Student.query.count()
 
-    # If you don't have a departments table,
+    # If you don't have a departments table, 
     # you can count unique departments directly from Student table:
     total_departments = db.session.query(Student.department).distinct().count()
 

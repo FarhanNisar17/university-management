@@ -45,7 +45,7 @@ def apply(id):
         email = request.form["email"]
         phone = request.form["phone"]
         reason = request.form["reason"]
-        parentage = request.form["parentage"]   
+
         # Duplicate checking
         existing_email = ScholarshipApplication.query.filter_by(email=email).first()
         existing_phone = ScholarshipApplication.query.filter_by(phone=phone).first()
@@ -64,8 +64,7 @@ def apply(id):
             fullname=fullname,
             email=email,
             phone=phone,
-            reason=reason,
-            parentage=parentage
+            reason=reason
         )
 
         try:

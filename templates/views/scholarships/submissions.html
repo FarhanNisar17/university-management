@@ -1,5 +1,7 @@
 {% include 'includes/navigation.html' %}
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='scholarships_submissions.css') }}"
@@ -15,6 +17,7 @@
         <th>ID</th>
         <th>Scholarship</th>
         <th>Full Name</th>
+        <th>Parentage</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Reason</th>
@@ -28,18 +31,18 @@
         <td>{{ app.id }}</td>
         <td>{{ app.scholarship_name }}</td>
         <td>{{ app.fullname }}</td>
+        <td>{{ app.parentage }}</td>
         <td>{{ app.email }}</td>
         <td>{{ app.phone }}</td>
         <td class="reason">{{ app.reason }}</td>
 
         <td>
-          <a
-            href="/scholarships/delete/{{ app.id }}"
+          <button 
             class="btn-delete"
-            onclick="return confirm('Delete this submission?')"
+            onclick="confirmDelete({{ app.id }})"
           >
             Delete
-          </a>
+          </button>
         </td>
       </tr>
       {% endfor %}
@@ -50,3 +53,21 @@
   <p class="empty">No applications submitted yet.</p>
   {% endif %}
 </div>
+
+<script>
+  function confirmDelete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This application will be permanently deleted",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = `/scholarships/delete/${id}`;
+      }
+    });
+  }
+</script>

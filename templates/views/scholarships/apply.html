@@ -1,27 +1,77 @@
 {% include 'includes/navigation.html' %}
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <script>
+      {% for category, message in messages %}
+        Swal.fire({
+          title: "{{ 'Success' if category == 'success' else 'Alert' }}",
+          text: "{{ message }}",
+          icon: "{{ category }}",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK",
+          timer: 3000,
+          timerProgressBar: true
+        });
+      {% endfor %}
+    </script>
+  {% endif %}
+{% endwith %}
+
 <div class="apply-container">
   <h1>Apply for {{ scholarship.name }}</h1>
 
   <form method="POST" class="apply-form">
+    
     <label>Full Name</label>
-    <input type="text" name="fullname" required />
+    <input 
+      type="text" 
+      name="fullname"
+      required
+      pattern="[A-Za-z\s]+"
+      title="Name should only contain letters and spaces"
+    />
+
+    <label>Parentage</label>
+    <input
+      type="text"
+      name="parentage"
+      required
+      pattern="[A-Za-z\s]+"
+      title="Parent name should only contain letters and spaces"
+    />
 
     <label>Email</label>
-    <input type="email" name="email" required />
+    <input 
+      type="email" 
+      name="email" 
+      required 
+      title="Enter a valid email address"
+    />
 
     <label>Phone</label>
-    <input type="text" name="phone" required />
+    <input 
+      type="text" 
+      name="phone" 
+      required
+      pattern="[0-9]{10}"
+      title="Phone must be 10 digits"
+    />
 
     <label>Reason for applying</label>
-    <textarea name="reason" required rows="4"></textarea>
+    <textarea 
+      name="reason" 
+      required 
+      rows="4"
+      minlength="10"
+      title="Reason should be at least 10 characters"
+    ></textarea>
 
-    <button class="btn-submit">Submit Application</button>
+    <button class="btn-submit" type="submit">Submit Application</button>
     <a class="btn-cancel" href="/scholarships">Cancel</a>
   </form>
 </div>
 
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='scholarships_apply.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='scholarships_apply.css') }}" />
